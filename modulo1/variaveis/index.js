@@ -20,7 +20,6 @@ b = 10
  console.log(`O novo valor de a é ${a}`)
  console.log(`O novo valor de b é ${b}`)
 
-
 //-------------------------------
 let a = 10
 let b = 10
