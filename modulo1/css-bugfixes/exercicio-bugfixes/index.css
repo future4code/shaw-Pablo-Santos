@@ -128,7 +128,9 @@ td button {
     margin-top: 20px;
     height: 100px;
 }
-
+img{
+    width: 50px;
+}
 
 #back-button {
     background-color: white;
