@@ -36,9 +36,7 @@ div>p:first-child {
     width: 12em;
 }
 
-div img {
-    background: black;
-}
+
 
 .botao-amarelo {
     background-color: #ffaf43;
@@ -128,8 +126,11 @@ td button {
     margin-top: 20px;
     height: 100px;
 }
-img{
+td>img{
     width: 50px;
+}
+div>img{
+    width: 20px;
 }
 
 #back-button {
