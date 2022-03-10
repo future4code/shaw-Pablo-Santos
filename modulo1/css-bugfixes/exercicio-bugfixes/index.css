@@ -146,3 +146,11 @@ div>img{
 #back-button:hover {
     background-color: #635a3d
 }
+td>button:hover{
+    background-color: #ffaf43;
+    transition: 0.3s;
+}
+td>button:active{
+    background-color: white;
+    color: black;
+}
