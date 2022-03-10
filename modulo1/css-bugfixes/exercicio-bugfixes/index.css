@@ -121,11 +121,23 @@ td button {
     border-radius: 5px;
     color: black;
 }
+td>button:hover{
+    background-color: #ffaf43;
+    transition: 0.3s;
+}
+td>button:active{
+    background-color: white;
+    color: black;
+}
 
 .container-do-search {
     margin-top: 20px;
     height: 100px;
+    
 }
+
+
+
 td>img{
     width: 50px;
 }
@@ -142,15 +154,13 @@ div>img{
     font-size: 10px;
     color: black;
 }
+.busca{
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+  
+}
 
 #back-button:hover {
     background-color: #635a3d
-}
-td>button:hover{
-    background-color: #ffaf43;
-    transition: 0.3s;
-}
-td>button:active{
-    background-color: white;
-    color: black;
 }
