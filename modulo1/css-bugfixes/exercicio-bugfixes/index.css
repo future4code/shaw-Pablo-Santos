@@ -146,6 +146,13 @@ td>img{
 div>img{
     width: 20px;
 }
+div>img:hover{
+    opacity: 0.6;
+    transition: 0.3s;
+}
+div>img:active{
+    opacity: 1;
+}
 
 #back-button {
     background-color: white;
