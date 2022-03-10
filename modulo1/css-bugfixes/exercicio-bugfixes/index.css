@@ -30,7 +30,10 @@ img {
 }
 
 div>p:first-child {
-    display: inline;
+   
+    margin-left: auto;
+    margin-right: auto;
+    width: 12em;
 }
 
 div img {
@@ -74,6 +77,8 @@ div img {
     background-color: #2274a5;
     color: white;
     padding-top: 100px;
+    margin: 0 auto;
+   
 }
 
 #container-de-descricao>ol {
