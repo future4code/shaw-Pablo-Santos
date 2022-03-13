@@ -208,7 +208,7 @@ font-size: 40px;
 
 }
 #enviar:hover{
-    background-color:#2f2859;
+    background-color: #998da6;
     transition: 0.3s;
     color: white;
 }
