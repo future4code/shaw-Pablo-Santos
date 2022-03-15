@@ -1,0 +1,21 @@
+*{
+    margin:0;
+    padding: 0;
+}
+header{
+    display: flex;
+    height: 10vh;
+    background-color: mediumvioletred;
+    justify-content: space-between;
+}
+header img{
+    width: 20px;
+}
+header div{
+    display: flex;
+
+    justify-content: start;
+}
+header h1{
+    font-size: 20px
+}
