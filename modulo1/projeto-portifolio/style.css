@@ -1,0 +1,250 @@
+*{
+margin: 0;
+padding: 0;
+font-family: 'Montserrat', sans-serif;
+
+}
+body{
+    background-color: #998da6;
+    color: white;
+}
+
+header{
+   background-color:#2f2859 ;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 15vh;
+    align-items: center;
+    
+}
+
+.titulo{
+    flex-direction: column;
+    padding-left: 150px;
+    color: #998da6;
+   
+}
+.navegacao{
+padding-right: 200px;
+
+}
+.navegacao li{
+    display: inline-block;
+    margin: 20px;
+}
+.navegacao li a{
+    color: white;
+    text-decoration: none;
+    font-size: larger;
+}
+.navegacao a:hover{
+border-radius: 20px;
+border: none;
+background-color: #998da6;
+padding: 5px;
+color: white;
+width: 10px;
+transition: 0.3s;
+}
+.navegacao a:active{
+background-color:#2f2859 ;
+}
+
+main{
+margin-top: 50px;
+align-items: center;
+}
+/* Estilização sobremim
+------------------------*/
+.sobre-mim{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+.sobre-mim aside{
+width:500px;
+margin-top: 70px;
+}
+.sobre-mim aside h1{
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+.sobre-mim article img{
+    width: 600px;
+    margin: 30px;
+    border-radius: 50%;
+}
+.sobre-mim aside h2{
+    margin-top: 30px;
+}
+.sobre-mim aside ul{
+    margin-top: 30px;
+}
+.sobre-mim ul img{
+    width: 150px;
+    padding-left: 10px;
+}
+/*Estilização Projetos
+----------------------*/
+.projetos{
+display: flex;
+flex-direction: row;
+justify-content: center;
+margin-top: 50px;
+margin-bottom: 50px;
+}
+
+.projetos article{
+    width: 500px;
+
+}
+.projetos h1{
+    display: inline;
+    font-size: 40px ;
+    
+}
+.projetos h2{
+    margin:30px;
+}
+.projetos input{
+    margin-top: 10px;
+    border-radius: 20px;
+    border: none;
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    color: black;
+    font:bold;
+}
+#saiba-mais:hover{
+    background-color: #2f2859;
+    transition: 0.3s;
+    color: white;
+}
+#saiba-mais:active{
+   background-color: white; 
+   color: black;
+}
+
+.projetos ul{
+    margin-top: 30px;
+    margin-left: 20px;
+}
+.projetos ul img{
+    width: 50px;
+}
+.projetos aside img{
+    margin: 30px;
+}
+.projetos aside img:hover{
+   
+    opacity: 0.7;
+    transition: 0.3s;
+}
+.projetos aside img:active{
+    width: 500px;
+    opacity: 1;
+}
+/* List de Habilidades
+----------------------*/
+.lista-habilidades{
+    display: block;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+.lista-habilidades h1{
+    font-size: 40px;
+    justify-content: center;
+    margin: 50px;
+}
+
+.lista-habilidades ul{
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 50px;
+}
+.lista-habilidades li img{
+    width: 300px;  
+}
+/* Contatos
+---------------*/
+.formulario-contato{
+    display: block;
+}
+.formulario-contato div{
+display: flex;
+justify-content: center;
+margin-top: 50px;
+}
+.formulario-contato h1{
+font-size: 40px;
+}
+.formulario-contato form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+.formulario-contato input{
+  justify-content: center;
+  width: 400px;
+  height: 50px;
+  padding: 5px; 
+  margin-top: 20px;
+  border-radius: 20px;
+  border: none;
+}
+#enviar{
+    width: 350px;
+    font-size: large;
+    font-weight: bold;
+
+}
+#enviar:hover{
+    background-color:#2f2859;
+    transition: 0.3s;
+    color: white;
+}
+#enviar:active{
+   background-color: white; 
+   color: black;
+}
+/* Footer
+--------------*/
+footer{
+    background-color:#2f2859;
+   
+}
+.redes-sociais h2{
+    margin-top: 40px;
+}
+.redes-sociais footer{
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 50px;
+   
+}
+.redes-sociais article{
+    display: flex;
+ justify-content: center;
+ 
+}
+.redes-sociais aside{
+ display: flex;
+ justify-content: center;
+
+}
+.redes-sociais img{
+    width: 80px;
+    margin: 20px;
+}
