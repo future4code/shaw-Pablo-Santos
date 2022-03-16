@@ -98,10 +98,8 @@ footer p{
     grid-template-rows:repeat(8, 1fr);
     height: 100%;
     padding: none;
-    padding-left:45px;
+    padding-left:30px;
 }
-iframe{
-    width: 310px;
-}
+
 
 }

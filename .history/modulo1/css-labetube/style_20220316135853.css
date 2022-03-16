@@ -95,13 +95,7 @@ footer p{
 @media screen and (min-device-width : 320px) and (max-device-width : 480px){
 .index{
     grid-template-columns: 1fr;
-    grid-template-rows:repeat(8, 1fr);
-    height: 100%;
-    padding: none;
-    padding-left:45px;
-}
-iframe{
-    width: 310px;
+    grid-template-rows:8fr;
 }
 
 }
