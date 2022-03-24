@@ -13,12 +13,10 @@ width:300px;
 display: flex;
 flex-direction: column;
 margin: 3px 0 ;
-border: none;
-border-radius: 3px;
 }
 button{
 
-  width: 100%;
+  width: 300px;
   margin: 3px 0;
 }
 

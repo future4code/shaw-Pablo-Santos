@@ -12,14 +12,9 @@ input{
 width:300px;
 display: flex;
 flex-direction: column;
-margin: 3px 0 ;
-border: none;
-border-radius: 3px;
-}
-button{
 
-  width: 100%;
-  margin: 3px 0;
+
+
 }
 
 `
