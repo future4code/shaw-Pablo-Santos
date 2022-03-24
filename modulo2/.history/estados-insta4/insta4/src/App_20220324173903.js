@@ -51,17 +51,15 @@ class App extends React.Component {
   };
   onChangeInputNome = (event) => {
 
-    this.setState({ valorinputNome: event.target.value });
+    this.setState({ valorInputNome: event.target.value });
   };
-
   onChangeInputFoto = (event) => {
 
-    this.setState({ valorinputFoto: event.target.value });
+    this.setState({ valorInputFoto: event.target.value });
   };
-
   onChangeInputPost = (event) => {
 
-    this.setState({ valorinputPost: event.target.value });
+    this.setState({ valorInputPost: event.target.value });
   };
 
 
@@ -109,7 +107,7 @@ class App extends React.Component {
             onChange={this.onChangeInputPost}
             placeholder={"Post"}
           />
-         <button onClick={this.adicionarNovoPost}>Adicionar</button>
+          <button />
         </div>
         {listaDeComponentes}
       </MainContainer>
