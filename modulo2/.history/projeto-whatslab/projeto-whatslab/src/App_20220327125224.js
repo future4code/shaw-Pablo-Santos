@@ -76,7 +76,7 @@ render(){
         placeholder={'Mensagem'}
         
         />
-        <button onClick={this.sendMensage}>Enviar</button>        
+        <button onClick={this.sendMesssage}>Enviar</button>        
       
       </InputContainer>
       </AppContainer>
