@@ -4,7 +4,7 @@ import Etapa1 from './components/Etapa1';
 import Etapa2 from './components/Etapa2';
 import Etapa3 from './components/Etapa3';
 import Final from './components/Final';
-import {AppContainer} from './styled'
+
 
 
 export default class MeuApp extends React.Component {
@@ -30,17 +30,15 @@ export default class MeuApp extends React.Component {
         break;
     }
   }
-  irParaProximaEtapa = () => {
+  irParaProximaEtapa = () =>{
     this.setState({etapa: this.state.etapa + 1})
   }
   render() {
     return (
-          <AppContainer>
-
+          <Container>
             {this.renderizaEtapa()}
-            {this.state.etapa < 4 && ( <button onClick={this.irParaProximaEtapa}>Próxima Etapa</button>)}
-
-          </AppContainer>
+            <button onClick={this.irParaProximaEtapa}>Próxima Etapa</button>
+          </Container>
         );
   }
 }

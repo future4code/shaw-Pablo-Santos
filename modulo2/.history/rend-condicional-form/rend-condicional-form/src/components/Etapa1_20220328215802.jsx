@@ -1,5 +1,5 @@
 import React from "react";
-import {AppContainer} from '../styled'
+import {Container} from "../style";
 
 
 
@@ -10,8 +10,8 @@ export default class Etapa1 extends React.Component {
 
     render() {
         return (
-           <AppContainer>
-
+            <Container>
+                
                 <h1> Etapa 1 -Dados Gerais</h1>
                 <input />
                 <h2>1. Qual seu nome?</h2>
@@ -28,9 +28,12 @@ export default class Etapa1 extends React.Component {
                     <option value="">Superior incompleto</option>
                 </select>
 
-            </AppContainer>
+            <Container/>
 
         )
     
-    }      
+
+
+
+    }
 }

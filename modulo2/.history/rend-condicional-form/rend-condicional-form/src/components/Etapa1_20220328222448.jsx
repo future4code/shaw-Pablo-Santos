@@ -10,7 +10,7 @@ export default class Etapa1 extends React.Component {
 
     render() {
         return (
-           <AppContainer>
+           <div>
 
                 <h1> Etapa 1 -Dados Gerais</h1>
                 <input />
@@ -28,7 +28,7 @@ export default class Etapa1 extends React.Component {
                     <option value="">Superior incompleto</option>
                 </select>
 
-            </AppContainer>
+            </div>
 
         )
     

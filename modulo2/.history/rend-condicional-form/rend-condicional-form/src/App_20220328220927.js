@@ -4,7 +4,7 @@ import Etapa1 from './components/Etapa1';
 import Etapa2 from './components/Etapa2';
 import Etapa3 from './components/Etapa3';
 import Final from './components/Final';
-import {AppContainer} from './styled'
+
 
 
 export default class MeuApp extends React.Component {
@@ -35,12 +35,12 @@ export default class MeuApp extends React.Component {
   }
   render() {
     return (
-          <AppContainer>
-
+          <Container>
+            
             {this.renderizaEtapa()}
-            {this.state.etapa < 4 && ( <button onClick={this.irParaProximaEtapa}>Próxima Etapa</button>)}
+            <button onClick={this.irParaProximaEtapa}>Próxima Etapa</button>
 
-          </AppContainer>
+          </Container>
         );
   }
 }
