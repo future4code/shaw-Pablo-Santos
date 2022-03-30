@@ -23,7 +23,7 @@ class App extends React.Component {
       tarefas: [{id:Date.now(), texto:'Beber Água', completa:false},{id:Date.now(), texto:'Estudar', completa:true}],
       inputValue: '',
       filtro: 'pendentes',
-    
+      tarefasNovas:''
     }
 
   componentDidUpdate() {
@@ -36,7 +36,7 @@ class App extends React.Component {
   };
 
   onChangeInput = (event) => {
-    this.setState({inputValue: event.target.value})
+    this.setState({tarefas: event.target.value})
   }
 
   criaTarefa = () => {

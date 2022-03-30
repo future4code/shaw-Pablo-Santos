@@ -36,7 +36,7 @@ class App extends React.Component {
   };
 
   onChangeInput = (event) => {
-    this.setState({inputValue: event.target.value})
+    this.setState({tarefasNovas: event.target.value})
   }
 
   criaTarefa = () => {
