@@ -1,0 +1,87 @@
+*{
+    margin:0;
+    padding: 0;
+}
+header{
+    display: flex;
+    height: 8vh;
+    background-color: mediumvioletred;
+    justify-content: space-between;
+    align-items: center;
+
+}
+header img{
+    width: 18px;
+    padding: 15px;
+}
+header div{
+    display: flex;
+    align-items: center;
+}
+header h1{
+    font-size: 20px
+    
+}
+button{
+    height: 20px;
+    width: 50px;
+    margin-right: 15px;
+}
+main{
+    height: 84vh;
+    display: flex;
+    
+}
+nav{
+    display:flex;
+   justify-content: space-between;
+    background-color:#f2d0e0 ;
+    width: 300px;
+    height: 629px;
+    padding: 1px;
+    text-align: center;
+}
+nav img{
+    width:18px;
+    margin-right: 20px;
+}
+nav ul{
+    display:flex;
+    flex-direction: column; 
+}
+nav li{
+    display: flex;
+    margin:10px;
+}
+/* secao bolos
+--------------*/
+aside{
+    width: 740px;
+    height: 84vh;
+    display: grid;
+    grid-row: ;
+    grid-template-rows:1fr 1fr 1fr 1fr ;
+}
+main div{
+width: 220px;
+border: 1px solid black;
+height: 305px;
+}
+main div img{
+    width: 220px;
+}
+
+
+
+
+
+
+
+
+
+
+
+footer{
+    height: 8vh;
+    background-color: mediumvioletred;
+}
