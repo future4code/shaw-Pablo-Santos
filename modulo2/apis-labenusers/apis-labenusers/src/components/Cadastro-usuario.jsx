@@ -13,6 +13,8 @@ export default class CadastroUsuario extends React.Component {
         return (
 
             <div>
+                 <button onClick={this.props.onClickLista}>Trocar Tela</button>
+                 <h3>Cadastro de usuário</h3>
                 <input type="text"
                     value={this.props.inputName}
                     placeholder="Nome"

@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import styled from 'styled-components';
 import CadastroUsuario from './components/Cadastro-usuario';
-import './App.css';
+import ListaUsuario from './components/Lista-usuarios';
 
 
 
@@ -15,15 +15,39 @@ const url = "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users
 
 export default class App extends React.Component {
   state = {
-    inputName:"",
-    inputEmail:""
+    inputName: "",
+    inputEmail: "",
+    telaAtual: "cadastro"
+  }
+  escolheTela = () => {
+    switch (this.state.telaAtual) {
+      case "cadastro":
+        return <CadastroUsuario 
+        
+        InputName={this.state.inputName}
+        inputEmail={this.state.inputEmail}
+        onChangeName={this.onChangeName}
+        onChangeEmail={this.onChangeEmail}
+        postCreateUser={this.postCreateUser}
+        onClickLista={this.onClickLista}
+        />
+      case "lista":
+        return <ListaUsuario onClickCadastro={this.onClickCadastro}/>
+      default: 
+        return "cadastro"
+    }
+  }
+  onClickCadastro = () => {
+    this.setState({
+      telaAtual: "cadastro"
+    })
+  }
+  onClickLista = () => {
+    this.setState({
+      telaAtual: "lista"
+    })
   }
 
-  componentDidMount(){
-
-    
-
-  }
 
   postCreateUser = () => {
 
@@ -32,17 +56,17 @@ export default class App extends React.Component {
       email: this.state.inputEmail
     };
     axios
-      .post(url,body, headers)
+      .post(url, body, headers)
       .then((response) => {
-  
-        console.log(response)
+
+       alert("Cadastrado(a) com sucesso!")
         this.setState({
-          inputName:"",
-          inputEmail:"",
+          inputName: "",
+          inputEmail: "",
         })
       })
       .catch((error) => {
-        console.log(error)
+        alert("Erro ao cadastrar, tente novamente!")
       })
   };
 
@@ -61,17 +85,10 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-      
-        <button onClick={""}>Trocar Tela</button>
-{console.log(this.state.inputEmail)}
-        <CadastroUsuario
-          InputName={this.state.inputName}
-          inputEmail={this.state.inputEmail}
-          onChangeName={this.onChangeName}
-          onChangeEmail={this.onChangeEmail}
-          postCreateUser={this.postCreateUser}
-        />
 
+       {this.escolheTela()}
+       
+     
       </div>
 
     )
