@@ -1,15 +1,40 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-const Nav =styled.nav`
-margin:10px;
 
+
+
+const Nav = styled.nav`
+margin:15px;
+
+button{
+height: 30px;
+width: 19vw;
+cursor: pointer;
+border-radius: 5px;
+border: grey;
+font-size: 13px;
+transition: 0.3s;
+background-image: linear-gradient(45deg,#fd267a,#ff6036);
+transition: background-image 1s;
+color: white;
+
+&:hover,:focus{
+  font-size: 15px;
+  width: 20vw;
+  height: 35px;
+  background-image: linear-gradient(45deg,#ff6036,#fd267a);
+}
+&:active{
+    color:black;
+}
 
 `
+
 const ListaMatches = styled.main`
  overflow-y: scroll;
- width: 400px;
- height: 500px;
+ width: 24vw;
+ height: 70vh;
 .containerMatch{
     margin: 5px;
     display: flex;

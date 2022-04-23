@@ -3,12 +3,15 @@ import axios from 'axios';
 import TelaMatch from './components/TelaMatch';
 import TelaHome from './components/TelaHome'
 import styled from 'styled-components'
+import { SiTinder } from 'react-icons/si';
+import { ImList } from 'react-icons/im';
+
+
+
 const ContainerHome = styled.main`
 display:flex;
 flex-direction: column;
 align-items: center;
-
-
 
 
 `
@@ -16,6 +19,35 @@ const NavHome = styled.nav`
 display:flex;
 justify-content: space-between;
 background-image: linear-gradient(45deg,#fd267a,#ff6036);
+height: 10vh;
+width:24vw;
+align-items: center;
+.botaoLista{
+ background-color: #ff5444;
+  color: white;
+  margin:10px;
+  width: 40px;
+  border: none;
+  cursor:pointer;
+  font-size:25px;
+}
+.botaoHome{
+ background-color:#fd2b74;
+  color: white;
+  margin:10px;
+  width: 40px;
+  height: 20px;
+  border: none;
+  cursor:pointer;
+  font-size:25px;
+}
+`
+const Divh1 =styled.div`
+position: absolute ;
+left: 43.5%;
+h1{
+  color:white;
+}
 
 `
 
@@ -130,12 +162,18 @@ function App() {
   return (
     <ContainerHome>
       <NavHome>
-        {tela === 'TelaMatch' && (<button onClick={onClickHome}>Home</button>)}
-        <h1>AstroMatch</h1>
-        {tela === 'TelaHome' && (<button onClick={onClickMatch}>Meus Matchs</button>)}
+        <div>
+          {tela === 'TelaMatch' && (<button className="botaoHome"onClick={onClickHome}> <SiTinder /> </button>)}
+        </div>
+        <Divh1>
+          <h1>AstroMatch</h1>
+        </Divh1>
+        <div>
+          {tela === 'TelaHome' && (<button className="botaoLista"onClick={onClickMatch}> <ImList /> </button>)}
+        </div>
       </NavHome>
       {escolherTela()}
-    </ContainerHome>
+    </ContainerHome >
   );
 }
 
