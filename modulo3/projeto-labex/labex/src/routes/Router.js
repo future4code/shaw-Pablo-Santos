@@ -12,12 +12,12 @@ export const Router = () => {
         <BrowserRouter>
             <Routes>
                 <Route index element={<HomePage />} />
-                <Route path="/listTripsPage" element={<ListTripsPage />} />
-                <Route path="/tripDetaisPage" element={<TripDetailPage />} />
-                <Route path="/aplicationFormPage" element={<AplicationFormPage />} />
-                <Route path="/loginPage" element={<LoginPage />} />
-                <Route path="/adminHomePage" element={<AdminHomePage />} />
-                <Route path="/createTripPage" element={<CreateTripPage />} />
+                <Route path="/trips/list" element={<ListTripsPage />} />
+                <Route path="/trips/application" element={<AplicationFormPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/admin/trips/list" element={<AdminHomePage />} />
+                <Route path="/admin/trips/create" element={<CreateTripPage />} />
+                <Route path="/admin/trips" element={<TripDetailPage />} />
             </Routes>
         </BrowserRouter>
 

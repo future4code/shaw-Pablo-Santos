@@ -6,24 +6,24 @@ navigate(-1)
 
 }
 export const goToListTripsPage =(navigate)=>{
-    navigate("/listTripsPage")
+    navigate("/trips/list")
 }
 
 
 export const goToAplicationFormPage=(navigate)=>{
 
-navigate("/aplicationFormPage")
+navigate("/trips/application")
 
 }
 // area do ADM
 export const goToLoginPage =(navigate)=>{
-    navigate("/loginPage")
+    navigate("/login")
 
 }
 export const goToAdminHomePage =(navigate)=>{
-    navigate("/adminHomePage")
+    navigate("/admin/trips/list")
 }
 export const goToCreateTripPage = (navigate)=>{
-    navigate("/createTripPage")
+    navigate("/admin/trips/create")
 }
 
