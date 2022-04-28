@@ -14,6 +14,37 @@ align-items: center;
 overflow: hidden;
 
 `
+const ContainerBotaoBack =styled.div`
+width: 100%;
+display: flex;
+flex-direction: row;
+justify-content:flex-end;
+margin: 1em 1em 0 0;
+
+
+.back{
+    width: 7vw;
+    height: 6vh;
+    border-radius: 3px;
+    border:none;
+    margin:3px;
+    background-color:#5180bf;
+    color: white;
+    cursor: pointer;
+    transition:0.3s;
+    &:hover{
+        box-shadow: 10px 5px 5px #9cb8dd;
+    }
+    &:active{
+        color: #011d41;
+    }
+}
+
+h1{
+    color: #011d41;
+}
+
+`
 const ContainerCardTrips=styled.div`
 display: flex;
 justify-content: center;
@@ -38,7 +69,7 @@ background: linear-gradient(135deg,  #b2e1ff 0%,#66b6fc 100%); /* W3C, IE10+, FF
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b2e1ff', endColorstr='#66b6fc',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
 &:hover{
-    box-shadow: 0 0 2em #011d41;
+    box-shadow: 0 0 1em #011d41;
 }
 p{
     padding: 2px;
@@ -110,10 +141,12 @@ export const ListTripsPage = () => {
 
     return (
         <ContainerListTrips>
+            <ContainerBotaoBack>
+             <button className='back' onClick={() => goToBack(navigate)}>Voltar</button>
+            </ContainerBotaoBack>
+
             <h1>Todas as viajens disponíveis</h1>
-            <button onClick={() => goToBack(navigate)}>Voltar</button>
             <ContainerBotao>
-                
                 <button onClick={() => goToAplicationFormPage(navigate)}>Inscreva-se</button>
             </ContainerBotao>
 

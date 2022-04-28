@@ -14,7 +14,7 @@ function App() {
       <Router />
       
       <ContainerFooter>
-
+      <p> ©️ Pablo Gomes - Shaw - Labenu</p>
       </ContainerFooter>
     </div>
   );

@@ -25,6 +25,12 @@ background: -webkit-linear-gradient(right,  #e4f5fc 0%,#bfe8f9 50%,#9fd8ef 65%,#
 background: linear-gradient(to left,  #e4f5fc 0%,#bfe8f9 50%,#9fd8ef 65%,#2692d6 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e4f5fc', endColorstr='#2692d6',GradientType=1 ); /* IE6-9 */
 
+display: flex;
+justify-content: center;
+align-items: center;
 width: 100%;
 height: 13vh;
+p{
+font-size: small;
+}
 `
