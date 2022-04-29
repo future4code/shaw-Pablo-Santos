@@ -113,7 +113,6 @@ export const ListTripsPage = () => {
         axios
             .get("https://us-central1-labenu-apis.cloudfunctions.net/labeX/pablo-gomes-shaw/trips")
             .then((res) => {
-                console.log(res)
                setTrips(res.data.trips)
             })
             .catch((err) => {

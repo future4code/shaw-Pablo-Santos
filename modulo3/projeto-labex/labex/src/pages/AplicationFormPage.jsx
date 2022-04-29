@@ -3,6 +3,9 @@ import axios from 'axios'
 import styled from 'styled-components'
 import { useNavigate, useParams } from 'react-router-dom'
 import { goToBack } from '../routes/coodinator'
+import useGetTrips from '../hooks/useGetTrips'
+import dataJson from '../json/paises-array.json'
+
 
 const ContainerPageForm = styled.main`
 
@@ -18,7 +21,7 @@ form{
     display: flex;
     flex-direction: column;
     justify-content: center;
-
+    width: 25%;
 .selectMundo{
 
 border-radius: 2px;
@@ -84,26 +87,65 @@ export const AplicationFormPage = () => {
     const [age, setAge] = useState('')
     const [textArea, setTextArea] = useState('')
     const [profession, setProfession] = useState('')
+    const [travelId, setTravelId] = useState('')
+    const [pais, setPais] = useState('')
+
+    const [trips, setTrips] = useGetTrips()
+
+
+    const postApplyToTripe = (e) => {
+        e.preventDefault()
+        const url = "https://us-central1-labenu-apis.cloudfunctions.net/labeX/:aluno/trips/travelId/apply"
+        const body = {
+            name: name,
+            age: age,
+            applicationText: textArea,
+            profession: profession,
+            country: pais,
+        }
+        const headers = {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+
+        axios
+            .post(url, body, headers)
+            .then((res) => {
+                alert("Cadastrado com sucesso")
+               
+
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 
     return (
         <ContainerPageForm>
             <h1>Inscreva-se para uma viajem</h1>
             <form action="">
-                <select className="selectMundo" name="" value={""}>
-                    <option>Marte</option>
+                <select className="selectMundo" name="" onChange={(e) => setTravelId(e.target.value)}>
+                    {trips.map((trip) => (
+                        <option >{trip.name}</option>
+                    ))}
                 </select>
                 <input type="text" placeholder='Nome' onChange={(e) => setName(e.target.value)} />
-                <input type="number" placeholder='Idade' onChange={(e)=> setAge(e.target.value)} />
-                <textarea type='text' placeholder='Texto de candidatura' onChange={(e)=>setTextArea(e.target.value)}/>
-                <input type="text" placeholder='Profissão' onChange={(e)=> setProfession(e.target.value)}/>
-                <select className="selectPais" name="pais" value={""}>
-                    <option>País</option>
+                <input type="number" placeholder='Idade' onChange={(e) => setAge(e.target.value)} />
+                <textarea type='text' placeholder='Texto de candidatura' onChange={(e) => setTextArea(e.target.value)} />
+                <input type="text" placeholder='Profissão' onChange={(e) => setProfession(e.target.value)} />
+                <select className="selectPais" onChange={(e) => setPais(e.target.value)} name="pais" >
+                    {dataJson.map((pais) => (
+                        <option >{pais.nome}</option>
+                    ))}
                 </select>
+
+
             </form>
 
             <ContainerBotao>
                 <button onClick={() => goToBack(navigate)}>Voltar</button>
-                <button>Enviar</button>
+                <button onClick={postApplyToTripe}>Enviar</button>
             </ContainerBotao>
         </ContainerPageForm>
     )
