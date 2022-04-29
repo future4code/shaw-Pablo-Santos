@@ -3,6 +3,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import axios from 'axios'
 import { goToBack } from '../routes/coodinator'
+import useForm from '../hooks/useForm'
+import worldJson from '../json/world-array.json'
+import useProtectPage from '../hooks/useProtectPage'
+
 
 const ContainerCreateTrip = styled.main`
 display: flex;
@@ -43,7 +47,7 @@ padding-left:5px;
 
 `
 
-const ContainerButton =styled.div`
+const ContainerButton = styled.div`
 margin-top: 2em;
 display: flex;
 justify-content: center;
@@ -72,26 +76,87 @@ button{
 `
 
 export const CreateTripPage = () => {
+    useProtectPage()
     const navigate = useNavigate()
+    const { form, onChange, clearInput } = useForm({ name: '', world: '', date: '', description: '', days: '' });
+    const [trips, setTrips] = useState([])
+
+    const getTrips = () => {
+
+axios
+    .get("https://us-central1-labenu-apis.cloudfunctions.net/labeX/pablo-gomes-shaw/trips")
+    .then((res) => {
+       setTrips(res.data.trips)
+       console.log(res.data.trips)
+    })
+    .catch((err) => {
+        console.log(err.response)
+    })
+
+}
+
+
+    const postCreateTrip = (e) => {
+        
+        e.preventDefault();
+        clearInput()
+        const token = localStorage.getItem('token')
+        const url = "https://us-central1-labenu-apis.cloudfunctions.net/labeX/pablo-gomes-shaw/trips"
+        const body = {
+            name: form.name,
+            planet: form.world,
+            date: form.date,
+            description: form.description,
+            durationInDays: form.days
+        }
+        const headers = {
+            headers: {
+
+                "Content-Type": "application/json",
+                auth: token
+            }
+
+        }
+        axios
+            .post(url, body, headers)
+            .then((res) => {
+                
+                getTrips()
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
+    };
+
+
+
+
+
+
+    const selectWorld = worldJson.map((world) => (
+        <option>{world.nome}</option>
+    ))
+
 
     return (
         <ContainerCreateTrip>
             <h1>Criação de viajens</h1>
-            <form>
-            <input type="text" placeholder='Nome' />
-            <select name="" >
-                <option>marte</option>
-            </select>
-            <input type="date"></input>
-            <textarea placeholder="Descrição" type="text"name=""/>
-            <input type="number" placeholder='Duração em dias'/>
+            <form onSubmit={postCreateTrip}>
+                <input onChange={onChange} name={'name'} value={form.name} type="text" placeholder='Nome' />
+                <select onChange={onChange} name={"world"} value={form.world} >
+                    {selectWorld}
+                </select>
+                <input onChange={onChange} name={"date"} value={form.date} type="date" ></input>
+                <textarea onChange={onChange} name={"description"} value={form.description} placeholder="Descrição" type="text" />
+                <input onChange={onChange} name={'days'} value={form.days} type="number" placeholder='Duração em dias' />
+                <button>Criar Viajem</button>
             </form>
             <ContainerButton>
                 <button onClick={() => goToBack(navigate)}>Voltar</button>
-                <button onClick={""}>Criar Viajem</button>
+
             </ContainerButton>
         </ContainerCreateTrip>
     )
-
 
 }

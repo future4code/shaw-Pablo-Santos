@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { goToLoginPage } from "../routes/coodinator";
 
 const  useProtectPage =()=>{
     const navigate = useNavigate()
@@ -12,7 +12,7 @@ const  useProtectPage =()=>{
         if(token === null){
             goToLoginPage(navigate)
         }
-    },[navigate])
+    },[])
     
 
 }

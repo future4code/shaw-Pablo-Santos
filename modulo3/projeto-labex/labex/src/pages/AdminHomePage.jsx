@@ -1,12 +1,14 @@
-import React, {useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
-import { goToBack, goToLoginPage } from '../routes/coodinator'
+import { goToBack, goToLoginPage, goToTripDetail } from '../routes/coodinator'
 import { goToCreateTripPage } from '../routes/coodinator'
+import useGetTrips from '../hooks/useGetTrips'
+import useProtectPage from '../hooks/useProtectPage'
 
 
-const ContainerHomeAdm =styled.main`
+const ContainerHomeAdm = styled.main`
 display: flex;
 flex-direction: column;
 min-height: 74vh;
@@ -17,7 +19,7 @@ h1{
 }
 
 `
-const ContainerButton =styled.div`
+const ContainerButton = styled.div`
 margin-top: 2em;
 display: flex;
 justify-content: center;
@@ -45,37 +47,33 @@ button{
 `
 
 
+export const AdminHomePage = () => {
+    const navigate = useNavigate()
+    useProtectPage()
+   const trips = useGetTrips([],"https://us-central1-labenu-apis.cloudfunctions.net/labeX/pablo-gomes-shaw/trips")
+
+    //window.localStorage.clear('token)   para deslogar
+
+    const tripsAdm = trips.map((trip) => {
+        return  <div key={trip.id}><p>{trip.name}</p> 
+        <button onClick={() => goToTripDetail(navigate,trip.id)}>Ver Detalhes</button>
+        </div>
+    })
 
 
+    return (
+        <ContainerHomeAdm>
+            <h1>Sala do Admin</h1>
 
-
-
-export const AdminHomePage =()=>{
-const navigate = useNavigate()
-
-
-//window.localStorage.clear('token)   para deslogar
-
-useEffect(()=>{
-    const token = localStorage.getItem("token")
-    if(token === null){
-        goToLoginPage(navigate)
-    }
-},[navigate])
-
-
-return(
-    <ContainerHomeAdm>
-    <h1>Sala do Admin</h1>
-    <div>
-
-    </div>
-    <ContainerButton>
-    <button onClick={()=>goToBack(navigate)}>Logout</button>
-    <button onClick={()=>goToCreateTripPage(navigate)}>Criar Viajem</button>
-    </ContainerButton>
-    </ContainerHomeAdm>
-)
+            <ContainerButton>
+                <button onClick={() => goToBack(navigate)}>Logout</button>
+                <button onClick={() => goToCreateTripPage(navigate)}>Criar Viajem</button>
+                <div>
+                    {tripsAdm}
+                </div>
+            </ContainerButton>
+        </ContainerHomeAdm>
+    )
 
 
 }

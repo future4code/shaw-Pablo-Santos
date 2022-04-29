@@ -2,15 +2,15 @@ import React from "react";
 import axios from "axios";
 import {useState, useEffect} from 'react'
 
-const useGetTrips = () =>{
+const useGetTrips = (stateInitial, url) =>{
 
 
     
-        const [trips, setTrips] = useState([])
+        const [trips, setTrips] = useState(stateInitial)
         useEffect(()=>{
 
             axios
-            .get("https://us-central1-labenu-apis.cloudfunctions.net/labeX/pablo-gomes-shaw/trips")
+            .get(url)
             .then((res) => {
                setTrips(res.data.trips)
             })
@@ -19,10 +19,10 @@ const useGetTrips = () =>{
             })
 
             
-        },[])
+        },[url])
        
 
-    return [trips, setTrips]
+    return trips
 
     
 }

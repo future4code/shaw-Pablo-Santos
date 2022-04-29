@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+
 import axios from 'axios'
 import styled from 'styled-components'
 import { useNavigate, useParams } from 'react-router-dom'
 import { goToAplicationFormPage, goToBack } from '../routes/coodinator'
+import useGetTrips from '../hooks/useGetTrips'
 
 const ContainerListTrips = styled.main`
 min-height: 74vh;
@@ -98,6 +99,7 @@ button{
 }
 
 }
+
 `
 
 
@@ -106,24 +108,10 @@ button{
 
 export const ListTripsPage = () => {
     const navigate = useNavigate()
-    const [trips, setTrips] = useState([])
+    
+    const trips = useGetTrips([],"https://us-central1-labenu-apis.cloudfunctions.net/labeX/pablo-gomes-shaw/trips")
+    
 
-    const getTrips = () => {
-
-        axios
-            .get("https://us-central1-labenu-apis.cloudfunctions.net/labeX/pablo-gomes-shaw/trips")
-            .then((res) => {
-               setTrips(res.data.trips)
-            })
-            .catch((err) => {
-                console.log(err.response)
-            })
-
-    }
-
-    useEffect(() => {
-        getTrips()
-    }, [trips])
 
     const allTrips = [...trips].map((trip)=>{
         return <CardTrips key={trip.id}>

@@ -95,7 +95,7 @@ export const AplicationFormPage = () => {
 
     const postApplyToTripe = (e) => {
         e.preventDefault()
-        const url = "https://us-central1-labenu-apis.cloudfunctions.net/labeX/:aluno/trips/travelId/apply"
+        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labeX/:aluno/trips/${travelId}/apply`
         const body = {
             name: name,
             age: age,
