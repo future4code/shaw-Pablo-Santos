@@ -83,21 +83,21 @@ export const CreateTripPage = () => {
 
     const getTrips = () => {
 
-axios
-    .get("https://us-central1-labenu-apis.cloudfunctions.net/labeX/pablo-gomes-shaw/trips")
-    .then((res) => {
-       setTrips(res.data.trips)
-       console.log(res.data.trips)
-    })
-    .catch((err) => {
-        console.log(err.response)
-    })
+        axios
+            .get("https://us-central1-labenu-apis.cloudfunctions.net/labeX/pablo-gomes-shaw/trips")
+            .then((res) => {
+                setTrips(res.data.trips)
+                alert("Viajem adicionada com sucesso")
+            })
+            .catch((err) => {
+                alert("[ERRO] tente novamente")
+            })
 
-}
+    }
 
 
     const postCreateTrip = (e) => {
-        
+
         e.preventDefault();
         clearInput()
         const token = localStorage.getItem('token')
@@ -120,7 +120,7 @@ axios
         axios
             .post(url, body, headers)
             .then((res) => {
-                
+
                 getTrips()
             })
             .catch((err) => {

@@ -90,7 +90,7 @@ export const AplicationFormPage = () => {
     const [travelId, setTravelId] = useState('')
     const [pais, setPais] = useState('')
 
-    const [trips, setTrips] = useGetTrips()
+  const trips = useGetTrips([],"https://us-central1-labenu-apis.cloudfunctions.net/labeX/pablo-gomes-shaw/trips")
 
 
     const postApplyToTripe = (e) => {

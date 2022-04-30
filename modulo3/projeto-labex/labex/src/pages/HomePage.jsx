@@ -44,12 +44,13 @@ width: 40vw;
 position: relative;
 top:-4vh;
 
-
 h2{
-width: 17vw;
+width: 16vw;
 color: #5180bf;
 margin: 10px;
 text-align: center;
+font-size: 1em;
+
 
 span{
     color: #011d41;
