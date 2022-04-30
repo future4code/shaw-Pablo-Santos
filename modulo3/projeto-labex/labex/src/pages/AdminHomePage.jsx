@@ -4,7 +4,6 @@ import axios from 'axios'
 import styled from 'styled-components'
 import { goToBack, goToLoginPage, goToTripDetail } from '../routes/coodinator'
 import { goToCreateTripPage } from '../routes/coodinator'
-import useGetTrips from '../hooks/useGetTrips'
 import useProtectPage from '../hooks/useProtectPage'
 
 
@@ -19,7 +18,7 @@ h1{
 }
 
 `
-const CardTripsAdm =styled.div`
+const CardTripsAdm = styled.div`
 text-align: center;
 width: 400px;
 min-height: 10px;
@@ -93,15 +92,59 @@ button{
 
 
 export const AdminHomePage = () => {
-    const navigate = useNavigate()
     useProtectPage()
-   const trips = useGetTrips([],"https://us-central1-labenu-apis.cloudfunctions.net/labeX/pablo-gomes-shaw/trips")
+    const navigate = useNavigate()
+    const [trips, setTrips] = useState([])
+
+    const getTrips = () => {
+        const url = "https://us-central1-labenu-apis.cloudfunctions.net/labeX/pablo-gomes-shaw/trips"
+        axios
+            .get(url)
+            .then((res) => {
+                setTrips(res.data.trips)
+            })
+            .catch((err) => {
+                console.log(err.response)
+            })
+
+
+    }
+    useEffect(() => {
+        getTrips()
+    }, [])
+
+
+    //req deletar trip
+    const deleteTrip = (id) => {
+
+        const token = localStorage.getItem('token')
+        axios.delete (`https://us-central1-labenu-apis.cloudfunctions.net/labeX/pablo-gomes-shaw/trips/${id}`, {
+
+        headers: {
+
+            "Content-Type": "application/json",
+            auth: token
+        }
+
+        })
+
+        .then ((res) => {
+            alert ('Viagem deletada')
+            getTrips ()
+        })
+        
+        .catch((err) => {
+            alert ('[Erro], tente novamente')
+        })
+
+    }
 
     //window.localStorage.clear('token)   para deslogar
 
     const tripsAdm = trips.map((trip) => {
-        return  <CardTripsAdm key={trip.id}><p>{trip.name}</p> 
-        <button onClick={() => goToTripDetail(navigate,trip.id)}>Ver Detalhes</button>
+        return <CardTripsAdm key={trip.id}><p>{trip.name}</p>
+            <button onClick={() => goToTripDetail(navigate, trip.id)}>Ver Detalhes</button>
+            <button onClick={() => deleteTrip(trip.id)}> X </button>
         </CardTripsAdm>
     })
 
@@ -109,14 +152,14 @@ export const AdminHomePage = () => {
     return (
         <ContainerHomeAdm>
             <h1>Sala do Admin</h1>
-                <ContainerButton>
+            <ContainerButton>
                 <button onClick={() => goToBack(navigate)}>Logout</button>
                 <button onClick={() => goToCreateTripPage(navigate)}>Criar Viajem</button>
-                </ContainerButton>
-                <div>
-                    {tripsAdm}
-                </div>
-           
+            </ContainerButton>
+            <div>
+                {tripsAdm}
+            </div>
+
         </ContainerHomeAdm>
     )
 
