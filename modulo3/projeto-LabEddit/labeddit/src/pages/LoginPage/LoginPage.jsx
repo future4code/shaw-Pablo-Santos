@@ -1,10 +1,11 @@
 import React from "react";
-import {ContainerLogin,ContainerForm,ContainerSignup} from "./style"
+import {ContainerLogin,Tittle,ContainerForm,InputLogin,ButtonLogin,ContainerSignup} from "./style"
 import {goToSignupPage} from "../../router/coodinator"
 import {useNavigate} from "react-router-dom" 
 import useForm from "../../hooks/useForm";
 import {postLogin} from "../../services/users"
 import useUnprotectedPage from "../../hooks/useUnProtectedPage"
+
 
 
 const LoginPage =()=>{
@@ -18,25 +19,26 @@ const LoginPage =()=>{
     return(
 
         <ContainerLogin>
-        <h1>Login Page</h1>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjBB9nz-FPRMLqAQCD46nbhHqfE1T2-T93sg&usqp=CAU" alt="Logo LabEddit" />
+        <Tittle>LabEddit</Tittle>
         <ContainerForm onSubmit={onSubmit}>
-            <input placeholder="E-mail"
+            <InputLogin placeholder="E-mail"
             type="email"
             name={"email"}
             value={form.email}
             onChange={onChange}
              />
-            <input placeholder="Senha"
+            <InputLogin placeholder="Senha"
             type="password"
             name={"password"}
             value={form.password}
             onChange={onChange}
             />
 
-            <button>Entrar</button>
+            <ButtonLogin>Entrar</ButtonLogin>
         </ContainerForm>
         <ContainerSignup>
-        <a onClick={()=>goToSignupPage(navigate)}>Ainda não tem uma conta? Criar Agora!</a>
+        <a>Ainda não tem uma conta?<span onClick={()=>goToSignupPage(navigate)}>Criar Agora!</span></a>
         </ContainerSignup>
         </ContainerLogin>
     )

@@ -4,7 +4,7 @@ import  useRequestData  from "../../hooks/useRequestData"
 import useProtectedPage from "../../hooks/useProtectedPage"
 import useForm from "../../hooks/useForm"
 import { postCreatePost } from "../../services/post"
-import { ContainerFeed } from "./style"
+import { ContainerFeed,ContainerForm,Tittle,IputFeed,TextAreaInput,ButtonPostar,DivStyle } from "./style"
 import CardPosts from "../../components/CardPost/CardPosts"
 import { goToPostPage } from "../../router/coodinator"
 import { useNavigate, useParams } from "react-router-dom"
@@ -16,7 +16,7 @@ const FeedPage = () => {
     useProtectedPage()
     const navigate = useNavigate()
     const params= useParams()
-    const getPosts = useRequestData([],`${BASE_URL}/posts`) 
+    const [posts, getPostsData] = useRequestData([],`${BASE_URL}/posts`) 
     
     const [form, onChange, clear] = useForm({ title: "", body: "" })
     
@@ -24,7 +24,7 @@ const FeedPage = () => {
 
     const onSubmit = (event) => {
         event.preventDefault()
-        postCreatePost(form,clear)
+        postCreatePost(form,clear,getPostsData)
     }
     const onClickDetail =(id)=>{
         goToPostPage(navigate, id)
@@ -36,13 +36,14 @@ const FeedPage = () => {
         putChangePostVote(id)
     }
 
-    const postsInScree = getPosts.map((post)=>{
+    const postsInScree = posts.map((post)=>{
         return <CardPosts 
         onClickDetail={onClickDetail} 
         key={post.id} 
         onClickLike={onClickLike} 
         onClickDislike={onClickDislike}
-        id={post.id} 
+        id={post.id}
+        username={post.username}
         title={post.title}
         body={post.body}
         voteSum={post.voteSum}
@@ -52,23 +53,24 @@ const FeedPage = () => {
 
     return (
         <ContainerFeed>
-            <form onSubmit={onSubmit}>
-                <h2>Crie seu Post</h2>
-
-                <input
+            <ContainerForm onSubmit={onSubmit}>
+                <Tittle>LabEddit</Tittle>
+                <IputFeed
                     placeholder="Título"
                     type="text"
                     name={"title"}
                     value={form.title}
                     onChange={onChange}
                 />
-                <textarea
+                <TextAreaInput
+                placeholder="Escreva seu post..."
                     name={"body"}
                     value={form.body}
                     onChange={onChange}
                     cols="30" rows="10"/>
-                <button>Postar</button>
-            </form>
+                <ButtonPostar>Postar</ButtonPostar>
+                <DivStyle></DivStyle>
+            </ContainerForm>
             {postsInScree}
         </ContainerFeed>
     )

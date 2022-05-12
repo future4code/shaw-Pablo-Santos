@@ -4,19 +4,19 @@ import { BASE_URL } from '../../constants/BASE_URL'
 import useRequestData from "../../hooks/useRequestData"
 import { useParams } from "react-router-dom"
 import CardComents from "../../components/CardComents/CardComents"
-import { ContainerPostPage } from "./style"
+import { ContainerPostPage,Cardget,ContainerForm,IputComents,ButtonComents,DivStyle } from "./style"
 import useForm from "../../hooks/useForm"
 import {postCreateComent} from "../../services/post"
 import {postCreateCommentsVote, putChangeCommentsVote} from "../../services/comments"
-
+import useProtectedPage from "../../hooks/useProtectedPage"
 
 
 const PostPage = () => {
-    
+    useProtectedPage()
     const params = useParams()
     const [form, onChange, clear] = useForm({body:""})
-    const getComments = useRequestData([], `${BASE_URL}/posts/${params.id}/comments`)
-    const getPosts = useRequestData([], `${BASE_URL}/posts`)
+    const [comments, getComents] = useRequestData([], `${BASE_URL}/posts/${params.id}/comments`)
+    const [posts, getPosts] = useRequestData([], `${BASE_URL}/posts`)
 
     const delDeleteCommentVote =(id)=>{
         axios
@@ -34,8 +34,9 @@ const PostPage = () => {
         })
     
     };
+    
 
-    const filterGetPost = getPosts.filter((post) => {
+    const filterGetPost = posts.filter((post) => {
         return post.id === params.id
     });
 
@@ -49,11 +50,12 @@ const PostPage = () => {
         delDeleteCommentVote(id)
     }
    
-    const mapGetPostComents = getComments.map((coment) => {
+    const mapGetPostComents = comments.map((coment) => {
         return <CardComents key={coment.id} 
         onClickLikeComment={onClickLikeComment} 
         onClickDisLikeComment={onClickDisLikeComment}
         onClickDeleteComment={onClickDeleteComment}
+        username={coment.username}
         voteSum={coment.voteSum}
         commentCount={coment.commentCount}
         id={coment.id} 
@@ -68,20 +70,22 @@ const PostPage = () => {
 
     return (
         <ContainerPostPage>
-            <h1>Post Page</h1>
-            <h2>{filterGetPost && filterGetPost[0] && filterGetPost[0].username}</h2>
-            <h3>{filterGetPost && filterGetPost[0] && filterGetPost[0].title}</h3>
-            <p>{filterGetPost && filterGetPost[0] && filterGetPost[0].body}</p>
-            <>
-                <form onSubmit={onSubmit}>
-                    <input type="text"
+            <Cardget>
+            <p>Envido por: {filterGetPost && filterGetPost[0] && filterGetPost[0].username}</p>
+            <p>{filterGetPost && filterGetPost[0] && filterGetPost[0].title}</p>
+            <h2>{filterGetPost && filterGetPost[0] && filterGetPost[0].body}</h2>
+            </Cardget>
+            
+                <ContainerForm onSubmit={onSubmit}>
+                    <IputComents placeholder='Comente aqui...' type="text"
                         name='body'
                         value={form.body}
                         onChange={onChange}
                     />
-                    <button>Enviar Comentário</button>
-                </form>
-            </>
+                    <ButtonComents>Enviar Comentário</ButtonComents>
+                    <DivStyle></DivStyle>
+                </ContainerForm>
+            
             <>
                 {mapGetPostComents}
             </>

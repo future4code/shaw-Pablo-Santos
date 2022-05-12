@@ -1,7 +1,7 @@
 import React from "react"
 import { ContainerSignup } from "./style"
 import { ContainerForm } from "./style"
-import { ContainerCheckbox } from "./style"
+import { ContainerCheckbox,Tittle,InputSignup,ButtonCadastrar,ButtonVoltar} from "./style"
 import {goToLoginPage} from "../../router/coodinator"
 import { useNavigate } from "react-router-dom"
 import useForm from "../../hooks/useForm"
@@ -21,24 +21,24 @@ const SignupPage = () => {
     return (
 
         <ContainerSignup>
-            <h1>Signup Page</h1>
+            <Tittle>Olá, boas vindas ao LabEddit ! </Tittle>
 
             <ContainerForm onSubmit={onSubmit}>
-                <input placeholder="Nome"
+                <InputSignup placeholder="Nome"
                     type="text"
                     name={"username"}
                     value={form.username}
                     onChange={onChange}
                 />
 
-                <input placeholder="E-mail"
+                <InputSignup placeholder="E-mail"
                     type="email"
                     name={"email"}
                     value={form.email}
                     onChange={onChange}
                 />
 
-                <input placeholder="Senha"
+                <InputSignup placeholder="Senha"
                     type="password"
                     name={"password"}
                     value={form.password}
@@ -50,11 +50,11 @@ const SignupPage = () => {
                       
                        /><label>Eu concordo em receber emails sobre coisas legais no Labeddit.</label>
                 </ContainerCheckbox>
-                <button>Cadastrar</button>
+                <ButtonCadastrar>Cadastrar</ButtonCadastrar>
 
             </ContainerForm>
 
-            <button onClick={() => goToLoginPage(navigate)}>Voltar</button>
+            <ButtonVoltar onClick={() => goToLoginPage(navigate)}>Voltar</ButtonVoltar>
         </ContainerSignup>
 
     )

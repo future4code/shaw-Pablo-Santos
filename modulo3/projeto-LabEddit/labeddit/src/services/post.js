@@ -4,7 +4,7 @@ import { BASE_URL } from "../constants/BASE_URL";
 
 
 
-export const postCreatePost =(body,clear)=>{
+export const postCreatePost =(body,clear,getPostsData)=>{
 
     axios
     .post(`${BASE_URL}/posts`, body,{
@@ -14,8 +14,8 @@ export const postCreatePost =(body,clear)=>{
     })
     .then((res)=>{
         console.log(res)
-        alert(res.data)
         clear()
+        getPostsData()
     })
     .catch((err)=>{
         alert(err.response.data.message)
