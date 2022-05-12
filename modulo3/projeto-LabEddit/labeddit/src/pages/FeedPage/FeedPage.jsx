@@ -7,15 +7,19 @@ import { postCreatePost } from "../../services/post"
 import { ContainerFeed } from "./style"
 import CardPosts from "../../components/CardPost/CardPosts"
 import { goToPostPage } from "../../router/coodinator"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
+import {postCreatePostVote, putChangePostVote} from "../../services/post"
+
 
 
 const FeedPage = () => {
+    useProtectedPage()
     const navigate = useNavigate()
+    const params= useParams()
     const getPosts = useRequestData([],`${BASE_URL}/posts`) 
     
     const [form, onChange, clear] = useForm({ title: "", body: "" })
-    useProtectedPage()
+    
 
 
     const onSubmit = (event) => {
@@ -25,9 +29,25 @@ const FeedPage = () => {
     const onClickDetail =(id)=>{
         goToPostPage(navigate, id)
     }
+    const onClickLike =(id)=>{
+       postCreatePostVote(id)
+    }
+    const onClickDislike =(id)=>{
+        putChangePostVote(id)
+    }
 
     const postsInScree = getPosts.map((post)=>{
-        return <CardPosts onClickDetail={onClickDetail} key={post.id} id={post.id} title={post.title} body={post.body}/>
+        return <CardPosts 
+        onClickDetail={onClickDetail} 
+        key={post.id} 
+        onClickLike={onClickLike} 
+        onClickDislike={onClickDislike}
+        id={post.id} 
+        title={post.title}
+        body={post.body}
+        voteSum={post.voteSum}
+        commentCount={post.commentCount}
+        />
     })
 
     return (

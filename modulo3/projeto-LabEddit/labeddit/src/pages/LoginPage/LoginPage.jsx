@@ -4,9 +4,11 @@ import {goToSignupPage} from "../../router/coodinator"
 import {useNavigate} from "react-router-dom" 
 import useForm from "../../hooks/useForm";
 import {postLogin} from "../../services/users"
+import useUnprotectedPage from "../../hooks/useUnProtectedPage"
 
 
 const LoginPage =()=>{
+    useUnprotectedPage()
     const navigate = useNavigate()
     const [form, onChange, clear] =useForm({email:"", password:""})
     const onSubmit =(e)=>{

@@ -1,15 +1,17 @@
-import { useHistory } from 'react-router-dom'
-import { useLayoutEffect } from 'react'
-import { goToRecipesList } from '../routes/coordinator'
+import {goToFeedPage} from "../router/coodinator"
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+
 
 const useUnprotectedPage = () => {
-  const history = useHistory()
-  useLayoutEffect(() => {
+  const navigate = useNavigate()
+  useEffect(() => {
     const token = localStorage.getItem('token')
     if (token){
-      goToRecipesList(history)
+      goToFeedPage(navigate)
     }
-  }, [history])
+  }, [navigate])
 }
 
 export default useUnprotectedPage

@@ -1,4 +1,3 @@
-import React from "react";
 import axios from "axios";
 import { BASE_URL } from "../constants/BASE_URL";
 
@@ -39,8 +38,52 @@ export const postCreateComent =(body,clear,params)=>{
         clear()
     })
     .catch((err)=>{
+
         alert(err.response.data.message)
     })
 
-}
+};
+
+export const postCreatePostVote =(id)=>{
+    const body = {
+            direction: 1,
+    }
+    axios
+    .post(`${BASE_URL}/posts/${id}/votes`, body,{
+        headers:{
+            Authorization: localStorage.getItem("token")
+        }
+    })
+    .then((res)=>{
+        
+        alert(res.data)
+       
+    })
+    .catch((err)=>{
+        console.log(err)
+        alert(err.response.data.message)
+    })
+
+};
+
+export const putChangePostVote =(id)=>{
+    const body = {
+            direction: -1,
+    }
+    axios
+    .put(`${BASE_URL}/posts/${id}/votes`, body,{
+        headers:{
+            Authorization: localStorage.getItem("token")
+        }
+    })
+    .then((res)=>{
+        alert("Deslike Registrado")
+        console.log(res)
+    })
+    .catch((err)=>{
+        
+        alert(err.response.data.message)
+    })
+
+};
  

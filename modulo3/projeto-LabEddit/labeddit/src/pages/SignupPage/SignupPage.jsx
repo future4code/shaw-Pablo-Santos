@@ -6,8 +6,10 @@ import {goToLoginPage} from "../../router/coodinator"
 import { useNavigate } from "react-router-dom"
 import useForm from "../../hooks/useForm"
 import { postSignup } from "../../services/users"
+import useUnprotectedPage from "../../hooks/useUnProtectedPage"
 
 const SignupPage = () => {
+    useUnprotectedPage()
     const navigate = useNavigate()
     const [form, onChange, clear] = useForm({ username: "", email: "", password: "" })
 

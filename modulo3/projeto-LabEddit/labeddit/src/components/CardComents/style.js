@@ -12,3 +12,10 @@ width: 70%;
 min-height: 20vh;
 cursor: pointer;
 `
+export const ContainerButtons =styled.div`
+display: flex;
+justify-content: space-evenly;
+width: 100%;
+align-items: center;
+margin: 0.2rem;
+`

@@ -10,5 +10,13 @@ border-radius: 2px solid;
 margin: 2px;
 width: 70%;
 min-height: 20vh;
-cursor: pointer;
+
+`
+export const CardButtons =styled.div`
+display: flex;
+justify-content: space-around;
+width: 100%;
+p{
+    cursor: pointer;
+}
 `
