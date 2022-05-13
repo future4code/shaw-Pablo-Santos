@@ -16,9 +16,7 @@ const CardComents = (props) => {
                 <p>{props.voteSum}</p>
                 <span><AiOutlineDislike onClick={() => props.onClickDisLikeComment(props.id)} /></span>
                 </DivLikesDislikes>
-                <DivDelButton>
-               <span> <AiFillDelete onClick={()=>props.onClickDeleteComment(props.id)} /></span>
-               </DivDelButton>
+               
             </ContainerButtons>
         </ContainerComent>
     )

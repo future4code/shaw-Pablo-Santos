@@ -8,13 +8,13 @@ import useUnprotectedPage from "../../hooks/useUnProtectedPage"
 
 
 
-const LoginPage =()=>{
+const LoginPage =({rightButtonText,setRightButtonText})=>{
     useUnprotectedPage()
     const navigate = useNavigate()
     const [form, onChange, clear] =useForm({email:"", password:""})
     const onSubmit =(e)=>{
         e.preventDefault()
-       postLogin(form, clear, navigate)  
+       postLogin(form, clear, navigate,setRightButtonText)  
     }
     return(
 

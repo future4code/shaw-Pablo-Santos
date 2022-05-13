@@ -41,10 +41,10 @@ const PostPage = () => {
     });
 
     const onClickLikeComment =(id)=>{
-        postCreateCommentsVote(id)
+        postCreateCommentsVote(id,getComents)
     };
     const onClickDisLikeComment =(id)=>{
-        putChangeCommentsVote(id)
+        putChangeCommentsVote(id,getComents)
     };
     const onClickDeleteComment =(id)=>{
         delDeleteCommentVote(id)

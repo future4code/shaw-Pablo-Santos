@@ -7,7 +7,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-min-height: 96vh;
+min-height: 85vh;
 padding: 1em;
 `
 export const Tittle =styled.h1`
@@ -57,27 +57,6 @@ margin: 0.5em;
 }
 &:active{
     color: black;
-}
-
-`
-export const ButtonVoltar =styled.button`
-width: 40%;
-height: 2em;
-color:  white;
-background:linear-gradient(to right, rgb(255, 65, 108), rgb(255, 75, 43));
-border-radius: 27px;
-border: none;
-font-size: 1em;
-cursor: pointer;
-transition: 0.3s;
-margin: 0.5em;
-&:hover{
-    background:linear-gradient(to left, rgb(255, 65, 108), rgb(255, 75, 43));
-    width: 52%;
-}
-&:active{
-    color: black;
-    
 }
 
 `

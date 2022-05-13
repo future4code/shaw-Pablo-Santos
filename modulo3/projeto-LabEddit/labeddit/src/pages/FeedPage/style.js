@@ -16,10 +16,7 @@ justify-content: center;
 align-items: center;
 width: 100%;
 `
-export const Tittle =styled.h2`
-color: #fb5c62;
 
-`
 export const IputFeed=styled.input`
 height: 4vh;
 padding-left:1em;

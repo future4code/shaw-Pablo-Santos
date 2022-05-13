@@ -1,7 +1,7 @@
 import React from "react"
 import { ContainerSignup } from "./style"
 import { ContainerForm } from "./style"
-import { ContainerCheckbox,Tittle,InputSignup,ButtonCadastrar,ButtonVoltar} from "./style"
+import { ContainerCheckbox,Tittle,InputSignup,ButtonCadastrar} from "./style"
 import {goToLoginPage} from "../../router/coodinator"
 import { useNavigate } from "react-router-dom"
 import useForm from "../../hooks/useForm"
@@ -54,7 +54,7 @@ const SignupPage = () => {
 
             </ContainerForm>
 
-            <ButtonVoltar onClick={() => goToLoginPage(navigate)}>Voltar</ButtonVoltar>
+        
         </ContainerSignup>
 
     )

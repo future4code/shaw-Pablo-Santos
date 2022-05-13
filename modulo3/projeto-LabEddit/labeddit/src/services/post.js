@@ -33,7 +33,7 @@ export const postCreateComent =(body,clear,params)=>{
         }
     })
     .then((res)=>{
-        console.log(res)
+        
         alert(res.data)
         clear()
     })
@@ -44,7 +44,7 @@ export const postCreateComent =(body,clear,params)=>{
 
 };
 
-export const postCreatePostVote =(id)=>{
+export const postCreatePostVote =(id, getPostsData)=>{
     const body = {
             direction: 1,
     }
@@ -55,7 +55,7 @@ export const postCreatePostVote =(id)=>{
         }
     })
     .then((res)=>{
-        
+        getPostsData()
         alert(res.data)
        
     })
@@ -66,7 +66,7 @@ export const postCreatePostVote =(id)=>{
 
 };
 
-export const putChangePostVote =(id)=>{
+export const putChangePostVote =(id, getPostsData)=>{
     const body = {
             direction: -1,
     }
@@ -77,6 +77,7 @@ export const putChangePostVote =(id)=>{
         }
     })
     .then((res)=>{
+        getPostsData()
         alert("Deslike Registrado")
         console.log(res)
     })

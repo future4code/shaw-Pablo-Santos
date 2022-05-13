@@ -21,12 +21,13 @@ export const postSignup = (body, clear, navigate) => {
 }
 
 
-export const postLogin = (body, clear, navigate) => {
+export const postLogin = (body, clear, navigate,setRightButtonText) => {
     axios
         .post(`${BASE_URL}/users/login`, body)
         .then((res) => {
             localStorage.setItem("token", res.data.token)
             goToFeedPage(navigate)
+            setRightButtonText("Logout")
         })
         .catch((err) => {
             console.log(err)

@@ -4,7 +4,7 @@ import  useRequestData  from "../../hooks/useRequestData"
 import useProtectedPage from "../../hooks/useProtectedPage"
 import useForm from "../../hooks/useForm"
 import { postCreatePost } from "../../services/post"
-import { ContainerFeed,ContainerForm,Tittle,IputFeed,TextAreaInput,ButtonPostar,DivStyle } from "./style"
+import { ContainerFeed,ContainerForm,IputFeed,TextAreaInput,ButtonPostar,DivStyle } from "./style"
 import CardPosts from "../../components/CardPost/CardPosts"
 import { goToPostPage } from "../../router/coodinator"
 import { useNavigate, useParams } from "react-router-dom"
@@ -30,10 +30,10 @@ const FeedPage = () => {
         goToPostPage(navigate, id)
     }
     const onClickLike =(id)=>{
-       postCreatePostVote(id)
+       postCreatePostVote(id,getPostsData)
     }
     const onClickDislike =(id)=>{
-        putChangePostVote(id)
+        putChangePostVote(id,getPostsData)
     }
 
     const postsInScree = posts.map((post)=>{
@@ -54,7 +54,6 @@ const FeedPage = () => {
     return (
         <ContainerFeed>
             <ContainerForm onSubmit={onSubmit}>
-                <Tittle>LabEddit</Tittle>
                 <IputFeed
                     placeholder="Título"
                     type="text"

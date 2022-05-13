@@ -3,7 +3,7 @@ import { BASE_URL } from "../constants/BASE_URL";
 
 
 
-export const postCreateCommentsVote =(id)=>{
+export const postCreateCommentsVote =(id,getComents)=>{
     const body = {
             direction: 1,
     }
@@ -14,7 +14,9 @@ export const postCreateCommentsVote =(id)=>{
         }
     })
     .then((res)=>{
+        getComents()
         alert(res.data)
+        
     })
     .catch((err)=>{
         console.log(err)
@@ -23,7 +25,7 @@ export const postCreateCommentsVote =(id)=>{
 
 };
 
-export const putChangeCommentsVote =(id)=>{
+export const putChangeCommentsVote =(id,getComents)=>{
     const body = {
             direction: -1,
     }
@@ -35,7 +37,8 @@ export const putChangeCommentsVote =(id)=>{
     })
     .then((res)=>{
         alert("Deslike Registrado")
-        console.log(res)
+        getComents()
+        
     })
     .catch((err)=>{
         

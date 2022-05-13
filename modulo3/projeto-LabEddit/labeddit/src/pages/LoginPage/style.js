@@ -6,7 +6,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-min-height: 96vh;
+min-height: 85vh;
 padding: 1em;
 
 `
