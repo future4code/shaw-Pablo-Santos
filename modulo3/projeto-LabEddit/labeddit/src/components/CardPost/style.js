@@ -8,7 +8,7 @@ align-items: center;
 background-color: #f2f2f2;
 border-radius: 2px solid;
 margin: 2px;
-max-width: 70%;
+width: 90%;
 min-height: 15vh;
 padding: 1em;
 border: 1px solid #e0e0e0 ;

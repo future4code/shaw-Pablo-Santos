@@ -6,7 +6,7 @@ flex-direction: column;
 justify-content: center;
 background-color: #fbfbfb;
 margin: 2px;
-min-width: 70%;
+width: 90%;
 min-height: 20vh;
 border-radius: 12px;
 border: 1px solid #e0e0e0;
