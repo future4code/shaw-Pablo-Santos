@@ -1,0 +1,14 @@
+ ex 1 
+ a. metodo GET
+ b. users
+
+ ex 2
+ a. type = req.query.type
+ b. criando um tipo para o type 
+
+ ex 3 
+ a. usei o pathParams  req.params.name
+  
+ ex 4
+ a. Nada mudou
+ b. metodo put é apropriado para alteraçao de algum dado especifico ( update)
