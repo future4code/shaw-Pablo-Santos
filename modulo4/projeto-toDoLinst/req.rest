@@ -39,5 +39,5 @@ Content-Type: application/json
 
 #################################
 
-GET http://localhost:3003/user/task/003
+GET http://localhost:3003/user/task/:id
 Content-Type: application/json
