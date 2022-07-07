@@ -5,6 +5,5 @@ export class User {
         private email: string,
         private password: string
     ) { }
-    getUserName = () => this.name
-    getUserEmail = () => this.email
+  
 }
