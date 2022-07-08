@@ -1,0 +1,43 @@
+POST  http://localhost:3003/user
+Content-Type: application/json
+
+{
+"name":"Tiao",
+"nickname":"Doido",
+"email":"tiao@oi.com"
+};
+
+#########################################
+
+GET http://localhost:3003/user/id/001
+Content-Type: application/json
+
+############################
+
+PUT http://localhost:3003/user/edit/001
+Content-Type: application/json
+
+{
+"name": "Joao Paulo",
+"nickname":"Titola"
+}
+
+############################
+
+POST http://localhost:3003/user/creat-task
+Content-Type: application/json
+
+{
+     "tittle":"Comer",
+      "description":"Comer Mais",
+      "limitDate":"2022-10-08",
+      "status":"to_do",
+      "creatorUserId":"001",
+      "creatorUserNickname":"002"
+}
+
+
+#################################
+
+GET http://localhost:3003/user/task/:id
+Content-Type: application/json
