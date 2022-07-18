@@ -1,0 +1,37 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+    "name": "Pablo Gomes",
+    "email": "pablo@oi.com",
+    "password": "123456"
+}
+
+#######
+
+# @name login
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email": "pablo@oi.com",
+    "password": "123456"
+}
+
+#######
+# @name newPost
+POST http://localhost:3003/post/newpost
+Authorization: {{login.response.body.token}}
+Content-Type: application/json
+
+{
+    "photo": "https://media-cdn.tripadvisor.com/media/photo-s/0f/fb/9d/c4/lugar-lindo-paraiso-vista.jpg",
+    "description": "Um belo lugar",
+    "type": "normal"
+}
+
+#######
+
+
+GET http://localhost:3003/post/0f80b60a-2819-4596-845e-7c8108959c89
+Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzOGNiYmI3LTBiZjktNDI5NS05YWY4LWMyYTE5ODRjNjMxNCIsImlhdCI6MTY1NzIyNzEwNiwiZXhwIjoxNjU3MjMwNzA2fQ.FE_ZRcOj5X-94TQoXHoOBFwCEteDwwetK7iC5Qo98cg"
