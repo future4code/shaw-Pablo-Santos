@@ -17,8 +17,6 @@ const Feed = () => {
     const [categoryRestaurants, setCategoryRestaurants] = useState([])
     const [valueCategory, setValueCategory] = useState('')
 
-    console.log(valueCategory)
-
     const getRestaurants = async () => {
         const token = localStorage.getItem('token')
         await axios
@@ -45,7 +43,13 @@ const Feed = () => {
             arrayAux.push(res.category)
         })
         const outroArray = [...new Set(arrayAux)]
-        setCategoryRestaurants(outroArray)
+        const changeObjectArray = []
+        outroArray.map((category) => {
+            const insertObj = { category, select: false }
+            changeObjectArray.push(insertObj)
+        })
+
+        setCategoryRestaurants(changeObjectArray)
     };
 
 
@@ -55,9 +59,22 @@ const Feed = () => {
         valueCategory ? restaurant.category.toLowerCase().includes(valueCategory.toLowerCase()) : true
     ).map((restaurant) => {
         return <CardsRestaurants
-            restaurant={restaurant}
+           key={restaurant.id} restaurant={restaurant}
         />
     });
+
+    const changeCategory = (category) => {
+        setValueCategory(category)
+        const result = categoryRestaurants.map((cat) => {
+            if (cat.category === category) {
+                return { ...cat, select: true }
+            } else {
+                return { ...cat, select: false }
+            }
+
+        })
+        setCategoryRestaurants(result)
+    }
 
 
 
@@ -75,17 +92,17 @@ const Feed = () => {
             </BoxInputSearch>
             <Menu>
                 <MenuItem
-                    onClick={() => setValueCategory('')}
+                    onClick={() => changeCategory('')}
                     select={true}
                 >
                     Todos
                 </MenuItem>
                 {categoryRestaurants.map((category) => {
                     return <MenuItem
-                        onClick={() => setValueCategory(category)}
-                        select={true}
+                        onClick={() => changeCategory(category.category)}
+                        select={category.select}
                     >
-                        {category}
+                        {category.category}
                     </MenuItem>
                 })}
 
