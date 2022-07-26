@@ -1,10 +1,13 @@
 import React from "react";
+import Header from "../../Components/Header/Header";
+import MenuFooter from "../../Components/MenuFooter/MenuFooter";
 
 const Profile = () => {
 
     return (
         <div>
-            Profile
+          <Header tittle={'Meu perfil'}/>
+          <MenuFooter page={"profile"}/>
         </div>
 
     )

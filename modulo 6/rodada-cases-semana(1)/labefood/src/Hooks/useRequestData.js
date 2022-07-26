@@ -1,4 +1,5 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import axios from 'axios'
 
 export const useRequestData = (initialState, url) => {
 
@@ -23,5 +24,5 @@ export const useRequestData = (initialState, url) => {
         getData()
     }, [])
 
-    return data
+    return [data]
 }

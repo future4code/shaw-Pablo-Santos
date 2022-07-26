@@ -5,6 +5,7 @@ import axios from 'axios'
 import { BASE_URL } from '../../Constants/url'
 import { useNavigate } from 'react-router-dom'
 import { goToFeed } from "../../Routes/coodinator";
+import Header from "../../Components/Header/Header";
 
 const SignUpAdress = () => {
 
@@ -45,6 +46,7 @@ const SignUpAdress = () => {
 
     return (
         <Main>
+            <Header back={'back'}/>
             <p>SignUpAdress</p>
             <Form onSubmit={onSubmitFormAdress}>
                 <InputMaterial

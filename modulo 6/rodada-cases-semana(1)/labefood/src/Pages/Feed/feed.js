@@ -4,7 +4,8 @@ import { Main, CardRestaurant, InputSearch, Menu, BoxInputSearch, MenuItem } fro
 import axios from 'axios'
 import { BASE_URL } from '../../Constants/url'
 import CardsRestaurants from "../../Components/CardsRestaurants/CardsRestaurants";
-import Header from "../../Components/Header/CardHeader";
+import Header from "../../Components/Header/Header";
+import MenuFooter from "../../Components/MenuFooter/MenuFooter";
 
 
 
@@ -59,7 +60,7 @@ const Feed = () => {
         valueCategory ? restaurant.category.toLowerCase().includes(valueCategory.toLowerCase()) : true
     ).map((restaurant) => {
         return <CardsRestaurants
-           key={restaurant.id} restaurant={restaurant}
+            key={restaurant.id} restaurant={restaurant}
         />
     });
 
@@ -81,7 +82,7 @@ const Feed = () => {
     return (
         <Main>
 
-            <Header tittle={'Ifuture'} />
+            <Header back={false} tittle={'Ifuture'} />
 
             <BoxInputSearch>
                 <InputSearch
@@ -108,10 +109,11 @@ const Feed = () => {
 
 
 
-            </Menu>
-            <CardRestaurant>
-                {filterRestaurant}
-            </CardRestaurant>
+                </Menu >
+                <CardRestaurant>
+                    {filterRestaurant}
+                </CardRestaurant>
+                <MenuFooter page={"feed"}/>
         </Main>
 
     )
