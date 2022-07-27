@@ -17,8 +17,6 @@ import {
 
 const CardProduct = ({ product, restaurant }) => {
 
-    console.log(product)
-
     const [showModal, setShowModal] = useState(false)
 
     const { requests, states } = useGlobal()
@@ -49,7 +47,11 @@ const CardProduct = ({ product, restaurant }) => {
                 </InformDescription>
                 <BoxInformPriceButton>
                     <InformPrice>
-                        {product.price}
+                    {new Intl.NumberFormat('pt-BR', {
+                            style: 'currency',
+                            currency: 'BRL'
+                        }).format(product.price)}
+                       
                     </InformPrice>
 
                     {

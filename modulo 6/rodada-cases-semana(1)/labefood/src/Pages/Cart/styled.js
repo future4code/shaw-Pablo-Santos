@@ -5,6 +5,7 @@ display: flex;
 height: 100vh;
 flex-direction: column;
 
+
 `
 export const MainCart = styled.main`
 display: flex;
@@ -78,7 +79,7 @@ p:nth-child(2){
 }
 
 `
-export const Form = styled.div`
+export const Form = styled.form`
 display: flex;
 flex-direction: column;
 div{
@@ -94,4 +95,7 @@ input{
     width: 20%;
 }
 
+`
+export const SpaceFooter = styled.div`
+height:3.000rem;
 `

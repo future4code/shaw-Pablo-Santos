@@ -14,6 +14,7 @@ const Feed = () => {
     useProtectedPage()
 
     const [restaurants, setRestaurants] = useState([])
+ 
     const [inputText, setInputText] = useState("")
     const [categoryRestaurants, setCategoryRestaurants] = useState([])
     const [valueCategory, setValueCategory] = useState('')

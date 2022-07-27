@@ -1,48 +1,87 @@
-import React, { useState } from "react";
-import { Main, MainCart, CartConfig, InfoProfile, InfoRestaurant, CartInfo, EmptyCart, Payment, Freight, Total, Form } from './styled'
+import React, { useEffect, useState } from "react";
+import { Main, MainCart, CartConfig, InfoProfile, InfoRestaurant, CartInfo, EmptyCart, Payment, Freight, Total, Form, SpaceFooter } from './styled'
 import { useRequestData } from '../../Hooks/useRequestData'
 import { useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../../Constants/url'
-import CardCart from '../../Components/CardCart/CardCart'
 import Header from '../../Components/Header/Header'
 import MenuFooter from "../../Components/MenuFooter/MenuFooter";
+import { useGlobal } from "../../Context/Global/GlobalStateContext";
+import CardProduct from "../../Components/Cardproduct/Cardproduct";
+import { Button } from "@mui/material";
+import axios from "axios";
 
 
 const Cart = () => {
     const profile = useRequestData({}, `${BASE_URL}/profile`)
-    const order = useRequestData({}, `${BASE_URL}/orders/history`)
     const navigate = useNavigate()
 
-    const [payment, setPayment] = useState([])
-    const [paymentMethod, setPaymentMethod] = useState({
-        'money': false,
-        'creditcard': false
-    })
+    const { states, setters } = useGlobal()
 
+    const { cart, restaurant, order } = states
+    const { setOrder } = setters
+    const [payment, setPayment] = useState([])
+   
+    const [paymentMethod] = useState(["money", "creditcard"])
+
+    const [fullPrice, setFullPrice] = useState(0)
 
     const onChangePayment = (event) => {
-        const newCheck = { ...paymentMethod }
-        newCheck[event.target.name] = event.target.checked
-        const result = Object.keys(newCheck).filter((pay) => {
-            if (newCheck[pay]) {
-                return [pay, ...payment]
-            }
-        })
-        setPayment(result)
-        setPaymentMethod(newCheck)
+
+        setPayment(event.target.value)
+
     }
 
-    const mockData = [{
-        name: 'seila',
-        price: 40,
-        photoUrl: "https://www.bing.com/th?id=AMMS_b9ee8c1f3ae2aaea8f5251ecaf7aab47&w=367&h=459&c=7&rs=1&qlt=80&o=6&cdv=1&pid=16.1",
-        amount: 2,
-        description: "pao, ovo , queijo e batata"
-    }]
+
+    const totalPrice = () => {
+        let totPrice = 0
+
+            for (const product of cart) {
+                totPrice += product.price * product.quantity
+            }
+            setFullPrice(Number(totPrice + restaurant.shipping))
+      
+    }
+    useEffect(() => {
+        totalPrice()
+    }, [])
+
+    const placeOrder = async () => {
+        const body = {
+            products: cart.map((product) => {
+                return (
+                    {
+                        id: product.id,
+                        quantity: product.quantity
+                    }
+                )
+            }),
+            paymentMethod: payment,
+
+        };
+
+        await axios
+            .post(`${BASE_URL}/restaurants/${restaurant.id}/order`, body, {
+                headers: {
+                    auth: window.localStorage.getItem('token')
+                }
+            })
+            .then((res) => {
+                setOrder(res.data.order)
+            })
+            .catch((err) => {
+                alert(err.response.data.message)
+            })
+    };
+
+    const onSubmitPlaceOrder = (event) => {
+        event.preventDefault()
+        placeOrder()
+    };
 
     return (
+
         <Main>
-            <Header tittle={'Meu carrinho'}/>
+            <Header tittle={'Meu carrinho'} />
             <CartConfig>
                 <InfoProfile>
                     <p>Endereço de entrega</p>
@@ -50,69 +89,70 @@ const Cart = () => {
                 </InfoProfile>
 
                 <InfoRestaurant>
-                    <p>Nome do restaurante</p>
-                    <p>Rua do restaurante</p>
-                    <p>30 - 45 min</p>
+                    <p>{restaurant.name}</p>
+                    <p>{restaurant.address}</p>
+                    <p>{restaurant.deliveryTime + "min"}</p>
                 </InfoRestaurant>
 
                 <CartInfo>
-                              {
-                        mockData.length > 0 ? mockData.map((data) => {
+                    {
+                        cart.length > 0 ? cart.map((product) => {
                             return (
-                                <CardCart
-                                    name={data.name}
-                                    price={data.price}
-                                    photoUrl={data.photoUrl}
-                                    amount={data.amount}
-                                    description={data.description}
+                                <CardProduct
+                                    product={product}
+                                    key={product.id}
+                                    restaurant={restaurant}
                                 />
                             )
 
                         }) : <EmptyCart>Carrinho vazio</EmptyCart>
 
                     }
- 
+
 
                 </CartInfo>
                 <Payment>
                     <Freight>Frete{new Intl.NumberFormat('pt-BR', {
                         style: 'currency',
                         currency: 'BRL'
-                    }).format(6)}
+                    }).format(restaurant.shipping ? restaurant.shipping : 0)}
                     </Freight>
                     <Total>
                         <p>SubTotal</p>
                         <p>{new Intl.NumberFormat('pt-BR', {
                             style: 'currency',
                             currency: 'BRL'
-                        }).format(50)}</p>
+                        }).format(fullPrice)}</p>
 
                     </Total>
                     <h1>Forma de Pagemento</h1>
                     <hr />
-                    <Form>
+                    <Form onSubmit={onSubmitPlaceOrder}>
                         {
-                            Object.keys(paymentMethod).map((key) => {
-                                const checked = paymentMethod[key]
+                            paymentMethod.map((key) => {
+
                                 return (
                                     <div>
                                         <input
-                                            checked={checked}
-                                            name={key}
+                                            checked={payment === key}
+                                            name={"paymentMethod"}
                                             id={key}
-                                            type={'checkbox'}
+                                            type={'radio'}
                                             onChange={onChangePayment}
+                                            value={key}
                                         />
-                                        <label>{key}</label>
+                                        <label htmlFor={key}>{key}</label>
                                     </div>
                                 )
                             })
                         }
+                        <Button type='submit'>Confimar</Button>
                     </Form>
                 </Payment>
             </CartConfig>
-            <MenuFooter page={"cart"}/>
+            <MenuFooter page={"cart"} />
         </Main>
+
 
     )
 
