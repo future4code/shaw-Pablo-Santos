@@ -1,10 +1,38 @@
 import React, { useState } from "react"
+import { useGlobal } from "../../Context/Global/GlobalStateContext"
 import ModalSelectQuantity from "../Modal/ModalSelectQuantity"
-import { BoxInform, BoxInformPriceButton, BoxNameQuantity, ContainerCardProduct, ImageProduct, InformButton, InformDescription, InformPrice, NameProduct } from "./styled"
+import {
+    BoxInform,
+    BoxInformPriceButton,
+    BoxNameQuantity,
+    ContainerCardProduct,
+    ImageProduct, InformAddItemButton,
+    InformRemoveItemButton,
+    InformDescription,
+    InformPrice,
+    NameProduct,
+    QuantityProduct,
+} from "./styled"
 
 
-const CardProduct = ({ product }) => {
-    const [showModal, setShowModal]= useState(false)
+const CardProduct = ({ product, restaurant }) => {
+
+    console.log(product)
+
+    const [showModal, setShowModal] = useState(false)
+
+    const { requests, states } = useGlobal()
+    const { addToCart, removeToCart } = requests
+    const { cart } = states
+
+
+    const choiceQuantity = (quantity) => {
+        addToCart(product, quantity, restaurant)
+        setShowModal(false)
+    }
+
+    const productInCart = cart.find((productCart) => productCart.id === product.id)
+
 
     return (
         <ContainerCardProduct>
@@ -12,6 +40,9 @@ const CardProduct = ({ product }) => {
             <BoxInform>
                 <BoxNameQuantity>
                     <NameProduct>{product && product.name}</NameProduct>
+                    {
+                        productInCart && <QuantityProduct>{productInCart.quantity}</QuantityProduct>   
+                    }
                 </BoxNameQuantity>
                 <InformDescription>
                     {product && product.description}
@@ -20,11 +51,24 @@ const CardProduct = ({ product }) => {
                     <InformPrice>
                         {product.price}
                     </InformPrice>
-                    <InformButton onClick={()=> setShowModal(true)}>
-                        Adicionar
-                    </InformButton>
+
+                    {
+                        productInCart ?
+                            <InformRemoveItemButton onClick={() => removeToCart(product.id)}>
+                                Remover
+                            </InformRemoveItemButton>
+                            :
+                            <InformAddItemButton onClick={() => setShowModal(true)}>
+                                Adicionar
+                            </InformAddItemButton>
+                    }
+
                 </BoxInformPriceButton>
-                <ModalSelectQuantity open={showModal} setOpen={setShowModal}/>
+                <ModalSelectQuantity
+                    choiceQuantity={choiceQuantity}
+                    open={showModal}
+                    setOpen={setShowModal}
+                />
             </BoxInform>
         </ContainerCardProduct>
     )

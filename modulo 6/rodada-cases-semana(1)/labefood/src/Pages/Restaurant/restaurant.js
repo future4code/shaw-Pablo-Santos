@@ -8,11 +8,13 @@ import CardProduct from "../../Components/Cardproduct/Cardproduct";
 import Header from '../../Components/Header/Header'
 
 
+
 const Restaurant = () => {
     const { restaurantId } = useParams()
     const [restaurant, setRestaurant] = useState([])
     const [categories, setCategories] = useState([])
 
+  
     const getRestaurant = async () => {
         const token = window.localStorage.getItem('token')
         await axios
@@ -24,7 +26,7 @@ const Restaurant = () => {
             })
             .then((res) => {
                 setRestaurant(res.data.restaurant)
-                console.log(res.data)
+                
             })
             .catch((err) => {
                 console.log(err.response.data.message)
@@ -49,7 +51,7 @@ const Restaurant = () => {
 
     return (
         <ContainerRestaurant>
-            <Header back={true} tittle={"Restaurante"}/>
+            <Header back={true} tittle={"Restaurante"} />
             <CardRestaurant>
                 <CardsRestaurantDetails restaurant={restaurant} />
 
@@ -59,11 +61,15 @@ const Restaurant = () => {
                             <Category>{category}</Category>
                             {
                                 restaurant.products
-                                .filter((product)=>{
-                                    return product.category === category
-                                }).map((product) => {
-                                    return <CardProduct key={product.id} product={product} />
-                                })
+                                    .filter((product) => {
+                                        return product.category === category
+                                    }).map((product) => {
+                                        return <CardProduct 
+                                        key={product.id} 
+                                        product={product}
+                                        restaurant={restaurant}
+                                        />
+                                    })
                             }
                         </SectionProductyByCategory>
                     })
