@@ -1,0 +1,12 @@
+POST http://localhost:3003/participations/insert
+Content-Type: application/json
+
+{
+    "first_name": "Will",
+    "last_name": "Marques",
+    "participation": 30
+}
+
+####
+
+GET http://localhost:3003/participations
