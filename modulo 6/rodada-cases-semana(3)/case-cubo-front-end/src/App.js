@@ -1,9 +1,12 @@
 import React from 'react';
+import CuboHome from './pages/CuboHome/CuboHome'
+import {GlobalStyled} from './GlobalStyled'
 
 function App() {
   return (
-    <div className="App">
-    app
+    <div>
+      <GlobalStyled />
+      <CuboHome />
     </div>
   );
 }

@@ -8,6 +8,6 @@ const userController = new UserController(
     new UserBusiness(new UserDataBase())
 )
 
-app.post("/participations/insert", userController.sendParticipation)
+app.post("/participations", userController.sendParticipation)
 
 app.get("/participations", userController.getAllParticipations)

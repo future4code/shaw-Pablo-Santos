@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { sendParticipationDTO } from '../types'
 import { UserBusiness } from '../business/UserBusiness'
-import { BaseDataBase } from '../data/BaseDataBase'
+
 
 export class UserController {
     constructor(
@@ -37,9 +37,5 @@ export class UserController {
             }
             res.status(500).send("Erro na solicitação")
         }
-
     }
-
-
-
 }
