@@ -115,6 +115,4 @@ export const ConteinerGraphic = styled.aside`
 width: 16%;
 position: relative;
 right: 30px;
-
-
 `

@@ -11,6 +11,7 @@ const CuboHome = () => {
 
     const [allParticipations, setAllParticipations] = useState([])
     const [valores, setValores] = useState([])
+    const [names,setNames]=useState([])
    
 
 
@@ -27,7 +28,7 @@ const CuboHome = () => {
                 setAllParticipations(res.data)
             })
             .catch((err) => {
-                console.log(err.response)
+                console.log(err.response.data)
             })
     }
 
@@ -40,7 +41,7 @@ const CuboHome = () => {
                 clean();
             })
             .catch((err) => {
-                console.log(err.response);
+                alert(err.response.data);
             });
     };
 
@@ -52,6 +53,7 @@ const CuboHome = () => {
     ChartJS.register(ArcElement, Tooltip, Legend);
     const dataBase = {
         hidden: false,
+        labels: names,
         datasets: [
             {
                 data: valores,
@@ -83,6 +85,12 @@ const CuboHome = () => {
             return valor.participation
         })
         setValores(valoresUsers);
+
+        const name = allParticipations.map((valor) => {
+            return valor.first_name
+        })
+        setNames(name);
+
     }, [allParticipations])
 
     const showPartArray = allParticipations.map((participation) => {
@@ -94,7 +102,7 @@ const CuboHome = () => {
                 {`${((Number(participation.participation))).toFixed()}%`}
             </ItemTable2>
         </TableBody>
-    })
+    });
 
 
 
