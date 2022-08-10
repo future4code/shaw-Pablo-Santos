@@ -11,14 +11,14 @@ const CuboHome = () => {
 
     const [allParticipations, setAllParticipations] = useState([])
     const [valores, setValores] = useState([])
-    const [names,setNames]=useState([])
-   
+    const [names, setNames] = useState([])
+
 
 
     const { form, onChange, clean } = useForm({
         first_name: "",
         last_name: "",
-        participation: null
+        participation:""
     })
 
     const getParticipations = async () => {
@@ -28,7 +28,7 @@ const CuboHome = () => {
                 setAllParticipations(res.data)
             })
             .catch((err) => {
-                console.log(err.response.data)
+                alert(err.response.data)
             })
     }
 
@@ -93,13 +93,27 @@ const CuboHome = () => {
 
     }, [allParticipations])
 
+    const arraySumParticipation = allParticipations.map((value) => {
+        return value.participation
+    })
+
+    const sumParticipation = () => {
+        let sum = 0
+        for (let i = 0; i < arraySumParticipation.length; i++) {
+
+            sum += arraySumParticipation[i]
+        }
+        return sum
+    }
+
+
     const showPartArray = allParticipations.map((participation) => {
         return <TableBody key={participation.id}>
             <ItemTableId2 >{participation.id}</ItemTableId2>
             <ItemTable2>{participation.first_name}</ItemTable2>
             <ItemTable2>{participation.last_name}</ItemTable2>
             <ItemTable2>
-                {`${((Number(participation.participation))).toFixed()}%`}
+                {`${((Number(participation.participation * 100 / sumParticipation()))).toFixed()}%`}
             </ItemTable2>
         </TableBody>
     });
