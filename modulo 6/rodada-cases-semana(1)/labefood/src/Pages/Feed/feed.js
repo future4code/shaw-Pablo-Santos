@@ -6,18 +6,26 @@ import { BASE_URL } from '../../Constants/url'
 import CardsRestaurants from "../../Components/CardsRestaurants/CardsRestaurants";
 import Header from "../../Components/Header/Header";
 import MenuFooter from "../../Components/MenuFooter/MenuFooter";
+import Order from "../../Components/Order/Order";
+import { useGlobal } from "../../Context/Global/GlobalStateContext"
 
 
 
 
 const Feed = () => {
     useProtectedPage()
+    const { setters, states } = useGlobal()
+    const { setOrder } = setters
+    const { order } = states
 
+console.log(order)
     const [restaurants, setRestaurants] = useState([])
- 
     const [inputText, setInputText] = useState("")
     const [categoryRestaurants, setCategoryRestaurants] = useState([])
     const [valueCategory, setValueCategory] = useState('')
+
+
+
 
     const getRestaurants = async () => {
         const token = localStorage.getItem('token')
@@ -35,8 +43,29 @@ const Feed = () => {
                 console.log(err.response.data.message)
             })
     };
+    const getOrder = async () => {
+        const token = localStorage.getItem('token')
+        await axios
+            .get(`${BASE_URL}/active-order`, {
+                headers: {
+                    auth: token
+                }
+            })
+            .then((res) => {
+                const expirateAt = res.data.order.expiresAt
+                setOrder(res.data.order)
+                setTimeout(() => {
+                    getOrder()
+                }, expirateAt - new Date().getTime())
+                console.log( expirateAt - new Date().getTime())
+            })
+            .catch((err) => {
+                console.log(err.response.data.message)
+            })
+    };
     useEffect(() => {
         getRestaurants()
+        getOrder()
     }, []);
 
     const filterCategory = (restaurants) => {
@@ -110,11 +139,12 @@ const Feed = () => {
 
 
 
-                </Menu >
-                <CardRestaurant>
-                    {filterRestaurant}
-                </CardRestaurant>
-                <MenuFooter page={"feed"}/>
+            </Menu >
+            <CardRestaurant>
+                {filterRestaurant}
+            </CardRestaurant>
+            {order.length > 0 ? <Order key={order.id} restaurantName={order.restaurantName} totalPrice={order.totalPrice}  /> : ""}
+            <MenuFooter page={"feed"} />
         </Main>
 
     )

@@ -5,14 +5,14 @@ const GlobalState = ({ children }) => {
 
     const [cart, setCart] = useState([])
     const [restaurant, setRestaurant] = useState({})
-    const [order, setOrder] = useState(null)
+    const [order, setOrder] = useState({})
 
     const addToCart = (product, quantity, newRestaurant) => {
         if (newRestaurant.id === restaurant.id) {
-            setCart([...cart, {...product, quantity }])
+            setCart([...cart, { ...product, quantity }])
 
-        }else{
-            setCart([{...product, quantity}])
+        } else {
+            setCart([{ ...product, quantity }])
             setRestaurant(newRestaurant)
         }
 
@@ -26,9 +26,9 @@ const GlobalState = ({ children }) => {
     }
 
 
-    const states = { cart, restaurant,order}
+    const states = { cart, restaurant, order }
     const requests = { addToCart, removeToCart }
-    const setters = {setOrder}
+    const setters = { setOrder }
 
 
 
