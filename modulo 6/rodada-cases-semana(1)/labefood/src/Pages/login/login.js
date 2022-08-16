@@ -99,7 +99,7 @@ const Login = () => {
 
                     </IconButton>
                 </DivPassword>
-                <ButtonStyled type="submit"> correr</ButtonStyled>
+                <ButtonStyled type="submit">Entrar</ButtonStyled>
             </Form>
             <p>Nao poussui cadastro? <a onClick={()=>goToSignUp(navigate)}>Clique aqui</a></p>
         </Main>

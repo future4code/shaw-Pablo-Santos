@@ -7,7 +7,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import axios from 'axios'
 import {BASE_URL} from '../../Constants/url'
 import {useNavigate} from 'react-router-dom'
-import {goToSignUpAdress,goToSignUp} from '../../Routes/coodinator'
+import {goToSignUpAdress} from '../../Routes/coodinator'
 import Header from '../../Components/Header/Header'
 
 const SignUp = () => {
@@ -74,12 +74,9 @@ const SignUp = () => {
 
     };
 
-
-
     return (
         <Main>
-            <Header back={'back'}/>
-            <p>Cadastrar</p>
+        <Header back={'back'} tittle={'Cadastrar'} />
             <form onSubmit={onSubmitForm}>
                 <InputMaterial
                     id="outlined-basic"
@@ -155,7 +152,7 @@ const SignUp = () => {
 
                     </IconButton>
                 </PassDiv>
-                <ButtonStyled type="submit">Entrar</ButtonStyled>
+                <ButtonStyled type="submit">Cadastrar</ButtonStyled>
             </form>
         
         </Main>

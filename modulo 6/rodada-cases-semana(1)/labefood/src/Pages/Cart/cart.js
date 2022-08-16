@@ -9,6 +9,7 @@ import { useGlobal } from "../../Context/Global/GlobalStateContext";
 import CardProduct from "../../Components/Cardproduct/Cardproduct";
 import { Button } from "@mui/material";
 import axios from "axios";
+import { goToFeed } from "../../Routes/coodinator";
 
 
 const Cart = () => {
@@ -18,7 +19,7 @@ const Cart = () => {
     const { states, setters } = useGlobal()
 
     const { cart, restaurant, order } = states
-    const { setOrder } = setters
+    const { setOrder ,setCart} = setters
     const [payment, setPayment] = useState([])
    
     const [paymentMethod] = useState(["money", "creditcard"])
@@ -67,6 +68,8 @@ const Cart = () => {
             })
             .then((res) => {
                 setOrder(res.data.order)
+                setCart([])
+                goToFeed(navigate)
             })
             .catch((err) => {
                 alert(err.response.data.message)

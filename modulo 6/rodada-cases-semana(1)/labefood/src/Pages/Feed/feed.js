@@ -53,7 +53,6 @@ const Feed = () => {
                 setTimeout(() => {
                     getOrder()
                 }, expirateAt - new Date().getTime())
-                console.log( expirateAt - new Date().getTime())
             })
             .catch((err) => {
                 console.log(err.response.data.message)
@@ -61,8 +60,10 @@ const Feed = () => {
     };
     useEffect(() => {
         getRestaurants()
-        getOrder()
     }, []);
+    useEffect(() => {
+        getOrder()
+    }, [order]);
 
     const filterCategory = (restaurants) => {
         const arrayAux = []
@@ -75,7 +76,6 @@ const Feed = () => {
             const insertObj = { category, select: false }
             changeObjectArray.push(insertObj)
         })
-
         setCategoryRestaurants(changeObjectArray)
     };
 
@@ -107,11 +107,10 @@ const Feed = () => {
 
     return (
         <Main>
-
             <Header back={false} tittle={'Ifuture'} />
-
             <BoxInputSearch>
                 <InputSearch
+                placeholder="Buscar"
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
 
@@ -133,13 +132,14 @@ const Feed = () => {
                     </MenuItem>
                 })}
 
-
-
             </Menu >
             <CardRestaurant>
                 {filterRestaurant}
             </CardRestaurant>
-            {order.length > 0 ? <Order key={order.id} restaurantName={order.restaurantName} totalPrice={order.totalPrice}  /> : ""}
+
+            {order.restaurantName && order.totalPrice ? <Order key={order.id} restaurantName={order.restaurantName} totalPrice={order.totalPrice} /> : undefined}
+
+            
             <MenuFooter page={"feed"} />
         </Main>
 

@@ -1,5 +1,5 @@
 import React from "react";
-
+import {CardHistory} from  './styled'
 
 const CardOrderHistory = ({ restaurantName, totalPrice, createdAt }) => {
 
@@ -12,7 +12,7 @@ const CardOrderHistory = ({ restaurantName, totalPrice, createdAt }) => {
     }
 
     return (
-        <div>
+        <CardHistory>
             <p>{restaurantName}</p>
             <p>{convertDate(createdAt)}</p>
             <p>Subtotal: {new Intl.NumberFormat('pt-BR',
@@ -22,7 +22,7 @@ const CardOrderHistory = ({ restaurantName, totalPrice, createdAt }) => {
                 })
                 .format(totalPrice)}
             </p>
-        </div>
+        </CardHistory>
     )
 }
 export default CardOrderHistory

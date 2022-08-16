@@ -4,7 +4,7 @@ export const Main = styled.div`
 height: 100vh;
 display: flex;
 flex-direction: column;
-
+padding-bottom: 1rem;
 `
 export const Perfil = styled.div`
 text-align: center;
