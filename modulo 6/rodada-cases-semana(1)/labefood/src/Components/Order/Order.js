@@ -18,7 +18,7 @@ const Order = ({ totalPrice, restaurantName }) => {
                     </Title>
                     <RestaurantName>{restaurantName}</RestaurantName>
                     <TotalPrice>
-                        SUBTOTAL R${totalPrice}
+                        SUBTOTAL R${totalPrice.toFixed(2)}
                     </TotalPrice>
                 </BoxInform>
             </OrderContainer>

@@ -23,7 +23,6 @@ export const BoxInform = styled.div`
 
 `
 export const Title = styled.h3`
-font-family: Montserrat;
 font-size: 1rem;
 font-weight: normal;
 font-stretch: normal;
@@ -34,7 +33,6 @@ color: #fff;
 padding: 0.25rem;
 `
 export const RestaurantName = styled.p`
-font-family: Montserrat;
 font-size: 1rem;
 font-weight: normal;
 font-stretch: normal;
@@ -45,7 +43,6 @@ color: #000;
 padding: 0.25rem;
 `
 export const TotalPrice = styled.p`
-font-family: Montserrat;
 font-size: 1rem;
 font-weight: normal;
 font-stretch: normal;

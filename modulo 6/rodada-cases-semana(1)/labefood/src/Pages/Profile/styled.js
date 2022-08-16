@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 export const Main = styled.div`
-height: 100vh;
+height: auto;
 display: flex;
 flex-direction: column;
-padding-bottom: 1rem;
 `
 export const Perfil = styled.div`
 text-align: center;
@@ -15,7 +14,7 @@ border-bottom: 1px solid black;
 export const Informacoes = styled.div`
 display: flex;
 flex-direction: column;
-height: 100%;
+max-height:100%;
 `
 
 export const PerfilPessoa = styled.div`
@@ -39,10 +38,11 @@ div:nth-child(2){
 `
 
 export const EnderecoPessoa = styled.div`
-height: 10%;
+height: 5rem;
 background-color: lightgray;
 display: flex;
 justify-content: space-between;
+margin-bottom: 1rem;
 div:nth-child(1){
     width: 80%;
     padding: 10px;
@@ -63,4 +63,5 @@ height: 70%;
 display: flex;
 flex-direction: column;
 align-items: center;
+margin-bottom: 1rem;
 `

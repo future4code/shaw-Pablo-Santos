@@ -46,8 +46,7 @@ const SignUpAdress = () => {
 
     return (
         <Main>
-            <Header back={'back'} />
-            <p>SignUpAdress</p>
+            <Header back={'back'} tittle={'Endereço'} />
             <Form onSubmit={onSubmitFormAdress}>
                 <InputMaterial
                     id="outlined-basic"

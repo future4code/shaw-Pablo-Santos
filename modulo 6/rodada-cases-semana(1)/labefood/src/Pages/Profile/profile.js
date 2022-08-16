@@ -14,7 +14,6 @@ const Profile = () => {
   const navigate = useNavigate()
   const person = useRequestData({}, `${BASE_URL}/profile`)
   const order = useRequestData({}, `${BASE_URL}/orders/history`)
-  console.table(order[0].orders)
 
   return (
     <div>
@@ -50,8 +49,9 @@ const Profile = () => {
           </HistoriCompras>
 
         </Informacoes>
+        <MenuFooter page={"profile"} />
       </Main>
-      <MenuFooter page={"profile"} />
+    
     </div>
 
   )

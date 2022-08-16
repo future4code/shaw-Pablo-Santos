@@ -11,7 +11,7 @@ border-radius: 7px;
 export const ImageProduct = styled.img`
 width: 6rem;
 height: 7rem;
-border-radius: 7px 7px 0 0 ;
+border-radius:7px 0 0 7px ;
 `;
 
 export const BoxNameQuantity = styled.div`
@@ -78,6 +78,6 @@ align-items: center;
 border: solid 1px red;
 width: 2.063rem;
 height: 2.063rem;
-border-radius: 8px 0 8px 0;
+border-radius: 8px 0 0 8px;
 color: red;
 `;

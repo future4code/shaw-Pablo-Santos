@@ -103,14 +103,12 @@ const Feed = () => {
         setCategoryRestaurants(result)
     }
 
-
-
     return (
         <Main>
             <Header back={false} tittle={'Ifuture'} />
             <BoxInputSearch>
                 <InputSearch
-                placeholder="Buscar"
+                placeholder="Buscar Restaurante"
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
 
@@ -119,7 +117,7 @@ const Feed = () => {
             <Menu>
                 <MenuItem
                     onClick={() => changeCategory('')}
-                    select={true}
+                    select={false}
                 >
                     Todos
                 </MenuItem>
@@ -139,7 +137,6 @@ const Feed = () => {
 
             {order.restaurantName && order.totalPrice ? <Order key={order.id} restaurantName={order.restaurantName} totalPrice={order.totalPrice} /> : undefined}
 
-            
             <MenuFooter page={"feed"} />
         </Main>
 

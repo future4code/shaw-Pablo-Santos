@@ -6,7 +6,7 @@ export const InputMaterial =styled(TextField)`
 width: 100%;
 `
 export const Main=styled.div`
-padding: 10px;
+height: 100vh;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -17,9 +17,10 @@ p{
 export const Form =styled.form`
 display: flex;
 flex-direction: column;
-height: 50%;
+justify-content: space-evenly;
+height:100%;
 width: 90%;
-justify-content: space-around;
+
 `
 export const PassDiv = styled.div`
 display: flex;

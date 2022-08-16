@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import axios from 'axios'
 import { BASE_URL } from "../../Constants/url";
-import { Main, Form, ButtonStyled, DivPassword, InputMaterial } from "./styled";
-import { IconButton} from "@mui/material"
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { Main,Logo,Entrar, Form, ButtonStyled, DivPassword, InputMaterial } from "./styled";
 import { goToFeed, goToSignUp} from "../../Routes/coodinator"
 import {useNavigate} from 'react-router-dom'
+import LogoFutureEats from '../../Assets/logo-future-eats.svg'
 
 
 const Login = () => {
@@ -62,7 +60,8 @@ const Login = () => {
 
     return (
         <Main>
-            <p>Entrar</p>
+           <Logo src={LogoFutureEats}/>
+            <Entrar>Entrar</Entrar>
             <Form onSubmit={onSubmitLogin}>
                 <InputMaterial
                     error={checkErrEmail}
@@ -90,14 +89,7 @@ const Login = () => {
                         inputProps={{ minLength: 6, title: "A senha deve conter no mínimo 6 caracteres" }}
                         required
                     />
-                    <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        edge="end"
-                    >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-
-                    </IconButton>
+              
                 </DivPassword>
                 <ButtonStyled type="submit">Entrar</ButtonStyled>
             </Form>

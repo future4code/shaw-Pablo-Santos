@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Header from "../../Components/Header/Header";
-import { ButtonStyled, InputMaterial, Main, PassDiv } from "./styled";
+import { ButtonStyled,Form ,InputMaterial, Main, PassDiv } from "./styled";
 import { useRequestData } from "../../Hooks/useRequestData";
 import { BASE_URL } from "../../Constants/url";
 import { useNavigate } from "react-router-dom";
@@ -83,7 +83,7 @@ const ProfileEdit = () => {
 
     <Main>
       <Header back={'back'} tittle={'Editar perfil'} />
-      <form onSubmit={onSubmitForm}>
+      <Form onSubmit={onSubmitForm}>
         <InputMaterial
           id="outlined-basic"
           name="name"
@@ -109,7 +109,7 @@ const ProfileEdit = () => {
           onChange={(e) => setCpf(e.target.value)}
         />
         <ButtonStyled type="submit"> Salvar</ButtonStyled>
-      </form>
+      </Form>
 
     </Main>
 
