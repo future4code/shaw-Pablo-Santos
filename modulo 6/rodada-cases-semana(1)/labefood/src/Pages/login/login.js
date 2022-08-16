@@ -93,7 +93,7 @@ const Login = () => {
                 </DivPassword>
                 <ButtonStyled type="submit">Entrar</ButtonStyled>
             </Form>
-            <p>Nao poussui cadastro? <a onClick={()=>goToSignUp(navigate)}>Clique aqui</a></p>
+            <p>Nao possui cadastro? <a onClick={()=>goToSignUp(navigate)}>Clique aqui</a></p>
         </Main>
 
 
