@@ -60,5 +60,7 @@ div:nth-child(2){
 `
 export const HistoriCompras = styled.div`
 height: 70%;
-
+display: flex;
+flex-direction: column;
+align-items: center;
 `

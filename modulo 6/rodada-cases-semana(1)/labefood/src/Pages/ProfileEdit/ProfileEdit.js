@@ -4,8 +4,14 @@ import Header from "../../Components/Header/Header";
 import { ButtonStyled, InputMaterial, Main, PassDiv } from "./styled";
 import { useRequestData } from "../../Hooks/useRequestData";
 import { BASE_URL } from "../../Constants/url";
+import { useNavigate } from "react-router-dom";
+import { goToProfile } from "../../Routes/coodinator";
+import useProtectedPage from "../../Hooks/useProtectedPage"
 
 const ProfileEdit = () => {
+  useProtectedPage()
+  const navigate = useNavigate()
+
   const person = useRequestData({}, `${BASE_URL}/profile`)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -27,10 +33,34 @@ const ProfileEdit = () => {
         throw new Error(err.response)
       }))
   }
+
+
   useEffect(() => {
     getPerson()
-  })
+  },[]);
 
+  const upDateProfile = async () => {
+    const body = {
+      name,
+      email,
+      cpf
+    }
+    await axios
+      .put(`${BASE_URL}/profile`, body, {
+        headers: {
+          auth: window.localStorage.getItem('token')
+        }
+      })
+      .then((res) => {
+        alert('Dadosalterados com sucesso!')
+        goToProfile(navigate)
+      })
+      .catch((err) => {
+        console.log(err.response)
+      })
+
+
+  };
   const cpfMask = (value) => {
     if (person[0].user && cpf) {
       return value
@@ -44,8 +74,9 @@ const ProfileEdit = () => {
 
   const onSubmitForm = (event) => {
     event.preventDefault()
-
+    upDateProfile()
   };
+
 
 
   return (

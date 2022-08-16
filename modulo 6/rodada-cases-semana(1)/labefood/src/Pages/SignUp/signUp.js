@@ -7,7 +7,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import axios from 'axios'
 import {BASE_URL} from '../../Constants/url'
 import {useNavigate} from 'react-router-dom'
-import {goToSignUpAdress} from '../../Routes/coodinator'
+import {goToSignUpAdress,goToSignUp} from '../../Routes/coodinator'
 import Header from '../../Components/Header/Header'
 
 const SignUp = () => {
@@ -155,9 +155,9 @@ const SignUp = () => {
 
                     </IconButton>
                 </PassDiv>
-                <ButtonStyled type="submit"> Entrar</ButtonStyled>
+                <ButtonStyled type="submit">Entrar</ButtonStyled>
             </form>
-
+        
         </Main>
 
     )

@@ -6,12 +6,15 @@ import { useRequestData } from '../../Hooks/useRequestData'
 import { BASE_URL } from '../../Constants/url'
 import useProtectedPage from '../../Hooks/useProtectedPage'
 import { useNavigate } from "react-router-dom";
-import { goToProfileEdit } from "../../Routes/coodinator"
+import { goToProfileEdit, goToAdressEdit } from "../../Routes/coodinator"
+import CardOrderHistory from "../../Components/CardOrderHistory/CardOrderHistory";
 
 const Profile = () => {
   useProtectedPage()
-  const person = useRequestData({}, `${BASE_URL}/profile`)
   const navigate = useNavigate()
+  const person = useRequestData({}, `${BASE_URL}/profile`)
+  const order = useRequestData({}, `${BASE_URL}/orders/history`)
+  console.table(order[0].orders)
 
   return (
     <div>
@@ -31,9 +34,21 @@ const Profile = () => {
               <h4>Endereço cadastrado</h4>
               <p>{person[0].user && person[0].user.address}</p>
             </div>
-            <div>Editar</div>
+            <div onClick={() => goToAdressEdit(navigate, person[0].user.id)}>Editar</div>
           </EnderecoPessoa>
-          <HistoriCompras>Historico de Compras</HistoriCompras>
+          <HistoriCompras>
+            <p>Historico de Compra</p>
+            {order[0].orders && order[0].orders.length > 0 ? order[0].orders && order[0].orders.map((order) => {
+              return (
+                <CardOrderHistory
+                  restaurantName={order.restaurantName}
+                  totalPrice={order.totalPrice}
+                  createdAt={order.createdAt}
+                />
+              )
+            }) : <p>Voce nao realizou nenhum pedido</p>}
+          </HistoriCompras>
+
         </Informacoes>
       </Main>
       <MenuFooter page={"profile"} />

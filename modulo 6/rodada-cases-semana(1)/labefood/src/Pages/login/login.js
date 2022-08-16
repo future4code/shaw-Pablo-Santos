@@ -5,7 +5,7 @@ import { Main, Form, ButtonStyled, DivPassword, InputMaterial } from "./styled";
 import { IconButton} from "@mui/material"
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { goToFeed } from "../../Routes/coodinator"
+import { goToFeed, goToSignUp} from "../../Routes/coodinator"
 import {useNavigate} from 'react-router-dom'
 
 
@@ -99,9 +99,9 @@ const Login = () => {
 
                     </IconButton>
                 </DivPassword>
-                <ButtonStyled type="submit"> Entrar</ButtonStyled>
+                <ButtonStyled type="submit"> correr</ButtonStyled>
             </Form>
-
+            <p>Nao poussui cadastro? <a onClick={()=>goToSignUp(navigate)}>Clique aqui</a></p>
         </Main>
 
 

@@ -18,14 +18,10 @@ const Feed = () => {
     const { setOrder } = setters
     const { order } = states
 
-console.log(order)
     const [restaurants, setRestaurants] = useState([])
     const [inputText, setInputText] = useState("")
     const [categoryRestaurants, setCategoryRestaurants] = useState([])
     const [valueCategory, setValueCategory] = useState('')
-
-
-
 
     const getRestaurants = async () => {
         const token = localStorage.getItem('token')
