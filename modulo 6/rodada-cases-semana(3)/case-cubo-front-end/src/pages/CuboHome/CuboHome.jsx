@@ -164,7 +164,6 @@ const CuboHome = () => {
                         </TableHead>
                         {showPartArray}
                     </Table>
-
                     <ConteinerGraphic>
                         <Doughnut data={dataBase} />
                     </ConteinerGraphic>

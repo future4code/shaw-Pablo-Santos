@@ -67,14 +67,15 @@ p{
 `
 export const Section = styled.section`
 width: 100%;
-height: 60vh;
+height: auto;
 display: flex;
-justify-content: space-evenly;
+justify-content:center;
 `
 export const Table = styled.div`
+padding-top: 2rem;
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 30%;
   color: #394b50;
     font-family: 'Roboto', sans-serif;
 `;
@@ -112,7 +113,8 @@ justify-content: center;
 padding: 10px;
 `
 export const ConteinerGraphic = styled.aside`
-width: 16%;
-position: relative;
-right: 30px;
+width: 20rem;
+display: flex;
+justify-content: flex-end;
+margin-left: 5rem;
 `

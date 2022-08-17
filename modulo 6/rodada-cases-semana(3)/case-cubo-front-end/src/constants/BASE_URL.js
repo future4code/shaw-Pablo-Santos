@@ -1,1 +1,1 @@
-export const BASE_URL = "http://localhost:3003/participations"
+export const BASE_URL = "https://cubo-back-end-pablo.herokuapp.com/participations"
