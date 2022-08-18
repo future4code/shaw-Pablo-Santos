@@ -14,7 +14,7 @@ export const goToSignUpAdress = (navigate) =>{
     navigate('/signUp/adress')
 }
 export const goToAdressEdit = (navigate, id) =>{
-    navigate(`/adress/${id}`)
+    navigate(`/adressEdit/${id}`)
 }
 export const goToBack = (navigate) =>{
     navigate(-1)

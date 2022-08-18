@@ -6,15 +6,19 @@ import { BASE_URL } from '../../Constants/url'
 import CardsRestaurants from "../../Components/CardsRestaurants/CardsRestaurants";
 import Header from "../../Components/Header/Header";
 import MenuFooter from "../../Components/MenuFooter/MenuFooter";
+import Order from "../../Components/Order/Order";
+import { useGlobal } from "../../Context/Global/GlobalStateContext"
 
 
 
 
 const Feed = () => {
     useProtectedPage()
+    const { setters, states } = useGlobal()
+    const { setOrder } = setters
+    const { order } = states
 
     const [restaurants, setRestaurants] = useState([])
- 
     const [inputText, setInputText] = useState("")
     const [categoryRestaurants, setCategoryRestaurants] = useState([])
     const [valueCategory, setValueCategory] = useState('')
@@ -35,9 +39,31 @@ const Feed = () => {
                 console.log(err.response.data.message)
             })
     };
+    const getOrder = async () => {
+        const token = localStorage.getItem('token')
+        await axios
+            .get(`${BASE_URL}/active-order`, {
+                headers: {
+                    auth: token
+                }
+            })
+            .then((res) => {
+                const expirateAt = res.data.order.expiresAt
+                setOrder(res.data.order)
+                setTimeout(() => {
+                    getOrder()
+                }, expirateAt - new Date().getTime())
+            })
+            .catch((err) => {
+                console.log(err.response.data.message)
+            })
+    };
     useEffect(() => {
         getRestaurants()
     }, []);
+    useEffect(() => {
+        getOrder()
+    }, [order]);
 
     const filterCategory = (restaurants) => {
         const arrayAux = []
@@ -50,7 +76,6 @@ const Feed = () => {
             const insertObj = { category, select: false }
             changeObjectArray.push(insertObj)
         })
-
         setCategoryRestaurants(changeObjectArray)
     };
 
@@ -78,15 +103,12 @@ const Feed = () => {
         setCategoryRestaurants(result)
     }
 
-
-
     return (
         <Main>
-
             <Header back={false} tittle={'Ifuture'} />
-
             <BoxInputSearch>
                 <InputSearch
+                placeholder="Buscar Restaurante"
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
 
@@ -95,7 +117,7 @@ const Feed = () => {
             <Menu>
                 <MenuItem
                     onClick={() => changeCategory('')}
-                    select={true}
+                    select={false}
                 >
                     Todos
                 </MenuItem>
@@ -108,13 +130,14 @@ const Feed = () => {
                     </MenuItem>
                 })}
 
+            </Menu >
+            <CardRestaurant>
+                {filterRestaurant}
+            </CardRestaurant>
 
+            {order.restaurantName && order.totalPrice ? <Order key={order.id} restaurantName={order.restaurantName} totalPrice={order.totalPrice} /> : undefined}
 
-                </Menu >
-                <CardRestaurant>
-                    {filterRestaurant}
-                </CardRestaurant>
-                <MenuFooter page={"feed"}/>
+            <MenuFooter page={"feed"} />
         </Main>
 
     )

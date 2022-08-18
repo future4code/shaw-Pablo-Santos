@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Main, MainCart, CartConfig, InfoProfile, InfoRestaurant, CartInfo, EmptyCart, Payment, Freight, Total, Form, SpaceFooter } from './styled'
+import { Main, MainCart, CartConfig, InfoProfile, InfoRestaurant, CartInfo, EmptyCart, Payment, Freight, Total, Form, SpaceFooter ,ButtonStyled} from './styled'
 import { useRequestData } from '../../Hooks/useRequestData'
 import { useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../../Constants/url'
@@ -7,8 +7,8 @@ import Header from '../../Components/Header/Header'
 import MenuFooter from "../../Components/MenuFooter/MenuFooter";
 import { useGlobal } from "../../Context/Global/GlobalStateContext";
 import CardProduct from "../../Components/Cardproduct/Cardproduct";
-import { Button } from "@mui/material";
 import axios from "axios";
+import { goToFeed } from "../../Routes/coodinator";
 
 
 const Cart = () => {
@@ -18,7 +18,7 @@ const Cart = () => {
     const { states, setters } = useGlobal()
 
     const { cart, restaurant, order } = states
-    const { setOrder } = setters
+    const { setOrder ,setCart} = setters
     const [payment, setPayment] = useState([])
    
     const [paymentMethod] = useState(["money", "creditcard"])
@@ -67,6 +67,8 @@ const Cart = () => {
             })
             .then((res) => {
                 setOrder(res.data.order)
+                setCart([])
+                goToFeed(navigate)
             })
             .catch((err) => {
                 alert(err.response.data.message)
@@ -106,10 +108,7 @@ const Cart = () => {
                             )
 
                         }) : <EmptyCart>Carrinho vazio</EmptyCart>
-
                     }
-
-
                 </CartInfo>
                 <Payment>
                     <Freight>Frete{new Intl.NumberFormat('pt-BR', {
@@ -125,7 +124,7 @@ const Cart = () => {
                         }).format(fullPrice)}</p>
 
                     </Total>
-                    <h1>Forma de Pagemento</h1>
+                    <p>Forma de Pagamento</p>
                     <hr />
                     <Form onSubmit={onSubmitPlaceOrder}>
                         {
@@ -146,7 +145,7 @@ const Cart = () => {
                                 )
                             })
                         }
-                        <Button type='submit'>Confimar</Button>
+                        <ButtonStyled type='submit'>Confimar</ButtonStyled>
                     </Form>
                 </Payment>
             </CartConfig>

@@ -11,7 +11,7 @@ const onChange = (e) =>{
 const clean =()=>{
     setForm(initialState)
 }
-return {form, onChange, clean}
+return {form, onChange, clean,setForm}
 
 }
 export default useForm

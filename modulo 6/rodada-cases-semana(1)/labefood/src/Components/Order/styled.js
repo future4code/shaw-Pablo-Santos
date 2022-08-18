@@ -1,31 +1,53 @@
 import styled from 'styled-components'
-import { ReactComponent as Homepage } from '../../Assets/homepage.svg'
-import { ReactComponent as Avatar } from '../../Assets/avatar.svg'
-import { ReactComponent as Cart } from '../../Assets/shopping-cart.svg'
+import { ReactComponent as Clock } from '../../Assets/clock.svg'
 
-export const MenuContainer = styled.nav`
+export const OrderContainer = styled.nav`
 display: flex;
-justify-content: space-around;
 align-items: center;
-height: 3.062rem;
-box-shadow: 0 -1px 3px 0 rgba(0,0,0,0.2), 0 -2px 1px ;
+height: 7.375rem;
 position: fixed;
-bottom: 0;
+bottom: 3.062rem;
 width: 100%;
-background-color: white;
+background-color: red;
+z-index:2;
+padding-left: 2rem;
 `
-export const MenuContainerSpace = styled.div`
+export const OrderContainerSpace = styled.div`
 height: 3.062rem;
 `
-export const HomePageStyled = styled(Homepage)`
-fill:${(p) => p.pageCurrent ? "red" : "#B8B8B8"};
-`
-export const AvatarStyled = styled(Avatar)`
-fill:${(p) => p.pageCurrent ? "red" : "#B8B8B8"};
-
+export const ClockStyled = styled(Clock)`
 
 `
-export const CartStyled = styled(Cart)`
-fill:${(p) => p.pageCurrent ? "red" : "#B8B8B8"};
+export const BoxInform = styled.div`
 
+
+`
+export const Title = styled.h3`
+font-size: 1rem;
+font-weight: normal;
+font-stretch: normal;
+font-style: normal;
+line-height: normal;
+letter-spacing: -0.39px;
+color: #fff;
+padding: 0.25rem;
+`
+export const RestaurantName = styled.p`
+font-size: 1rem;
+font-weight: normal;
+font-stretch: normal;
+font-style: normal;
+line-height: normal;
+letter-spacing: -0.39px;
+color: #000;
+padding: 0.25rem;
+`
+export const TotalPrice = styled.p`
+font-size: 1rem;
+font-weight: normal;
+font-stretch: normal;
+font-style: normal;
+line-height: normal;
+letter-spacing: -0.39px;
+padding: 0.25rem;
 `

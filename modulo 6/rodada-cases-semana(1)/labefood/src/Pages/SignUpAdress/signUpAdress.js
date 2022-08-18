@@ -6,9 +6,11 @@ import { BASE_URL } from '../../Constants/url'
 import { useNavigate } from 'react-router-dom'
 import { goToFeed } from "../../Routes/coodinator";
 import Header from "../../Components/Header/Header";
+import useProtectedPage from '../../Hooks/useProtectedPage'
+
 
 const SignUpAdress = () => {
-
+    useProtectedPage()
     const navigate = useNavigate()
 
     const { form, onChange, clean } = useForm({
@@ -20,10 +22,8 @@ const SignUpAdress = () => {
         "complement": "",
     });
 
-   
-
     const addAddress = async () => {
-        const token = localStorage.getItem('token')
+        const token = window.localStorage.getItem('token')
         await axios
             .put(`${BASE_URL}/address`, form, {
                 headers: {
@@ -38,7 +38,7 @@ const SignUpAdress = () => {
                 alert(err.respose.data.message)
             })
     };
-    
+
     const onSubmitFormAdress = (event) => {
         event.preventDefault()
         addAddress()
@@ -46,8 +46,7 @@ const SignUpAdress = () => {
 
     return (
         <Main>
-            <Header back={'back'}/>
-            <p>SignUpAdress</p>
+            <Header back={'back'} tittle={'Endereço'} />
             <Form onSubmit={onSubmitFormAdress}>
                 <InputMaterial
                     id="outlined-basic"

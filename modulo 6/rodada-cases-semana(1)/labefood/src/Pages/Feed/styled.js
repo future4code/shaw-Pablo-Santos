@@ -3,13 +3,14 @@ import styled from 'styled-components'
 
 
 export const Main = styled.div`
-
+height: auto;
 `;
 
 
 export const CardRestaurant = styled.div`
 padding: 0 1rem;
 margin-top: 0.5rem;
+margin-bottom:5rem;
 `;
 
 export const BoxInputSearch = styled.div`
@@ -19,7 +20,7 @@ margin-top:0.5rem;
 export const InputSearch = styled.input`
 width: 100%;
 height: 3.5rem;
-padding: 1rem 0,503rem 1rem 1.063rem;
+padding: 1rem;
 border-radius: 2px;
 border: solid 1px gray;
 

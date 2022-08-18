@@ -6,10 +6,11 @@ import { ContainerRestaurant, CardRestaurant, SectionProductyByCategory, Categor
 import CardsRestaurantDetails from "../../Components/CardsRestaurantDetails/CardsRestaurantDetails";
 import CardProduct from "../../Components/Cardproduct/Cardproduct";
 import Header from '../../Components/Header/Header'
-
+import useProtectedPage from "../../Hooks/useProtectedPage"
 
 
 const Restaurant = () => {
+    useProtectedPage()
     const { restaurantId } = useParams()
     const [restaurant, setRestaurant] = useState([])
     const [categories, setCategories] = useState([])

@@ -12,7 +12,6 @@ p{
 
 
 export const Main=styled.div`
-padding: 10px;
 height: 100vh;
 width: 100%;
 display: flex;
@@ -26,13 +25,12 @@ p{
 export const Form =styled.form`
 display: flex;
 flex-direction: column;
-height: 30%;
+justify-content:space-evenly;
+height: 90%;
 width: 80%;
-justify-content: space-evenly;
 `
 export const PassDiv = styled.div`
 display: flex;
-justify-content: space-between;
 align-items: center;
 p{
     font-size: 1rem;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useForm from '../../Hooks/useForm'
-import { ButtonStyled, InputMaterial, Main, PassDiv } from "./styled";
+import { ButtonStyled, InputMaterial, Main,Form, PassDiv } from "./styled";
 import { IconButton } from "@mui/material"
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -74,13 +74,10 @@ const SignUp = () => {
 
     };
 
-
-
     return (
         <Main>
-            <Header back={'back'}/>
-            <p>Cadastrar</p>
-            <form onSubmit={onSubmitForm}>
+        <Header back={'back'} tittle={'Cadastrar'} />
+            <Form onSubmit={onSubmitForm}>
                 <InputMaterial
                     id="outlined-basic"
                     label={"Nome"}
@@ -155,9 +152,9 @@ const SignUp = () => {
 
                     </IconButton>
                 </PassDiv>
-                <ButtonStyled type="submit"> Entrar</ButtonStyled>
-            </form>
-
+                <ButtonStyled type="submit">Cadastrar</ButtonStyled>
+            </Form>
+        
         </Main>
 
     )
