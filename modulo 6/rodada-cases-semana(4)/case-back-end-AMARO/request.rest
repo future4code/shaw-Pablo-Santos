@@ -1,0 +1,10 @@
+POST http://localhost:3003/product
+Content-Type: application/json
+
+{
+   "name":"tenis",
+   "tags": ["azul", "amarelo", "aiudiuaso"]
+}
+
+####
+GET http://localhost:3003/product?name=tenis
