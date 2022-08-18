@@ -1,0 +1,1 @@
+export const BASE_URL = "https://cubo-back-end-pablo.herokuapp.com/participations"
